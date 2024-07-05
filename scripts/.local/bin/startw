@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pipewire &
+waybar &
+swaybg -i ~/Downloads/the-neon-shallows-building.jpg -m fill &
+
+exec <&-

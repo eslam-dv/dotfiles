@@ -1,0 +1,92 @@
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  /* Tokyonight colors */
+  /* --foreground: #cdd6f4; */
+  /* --foreground-inactive: #313244 ; */
+  /* --background: #11111b; */
+  /* --background-alt: #313244*/
+  /* --background-active:	#89b4fa; */
+}
+
+#waybar {
+  /* background-color: rgb(17, 17, 27); */
+  background-color: transparent;
+}
+
+#tags {
+  background-color: #313244;
+}
+
+#tags button {
+  background-color: transparent;
+  color: rgba(205, 214, 244, 0.4);
+  /* padding-left: 1em; */
+  /* padding-right: 1.3em; */
+}
+
+#tags button.occupied {
+  color: #cdd6f4;
+}
+
+#tags button.focused {
+  background-color: #89b4fa;
+  color: #fff;
+  border-radius: 3px;
+}
+
+#tags,
+#clock,
+#pulseaudio,
+#custom-power,
+#language,
+#battery,
+#backlight,
+#tray,
+#usage,
+#sound,
+#network {
+  background-color: #313244;
+  color: #cdd6f4;
+  border-radius: 3px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 0.3em;
+}
+
+#network {
+  color: #eba0ac;
+}
+
+#usage {
+  color: #b4befe;
+}
+
+#clock {
+  color: #94e2d5;
+}
+
+#pulseaudio {
+  color: #89b4fa;
+}
+
+#backlight {
+  color: #f9e2af;
+}
+
+#battery {
+  color: #a6e3a1;
+}
+
+#custom-power {
+  background-color: #f38ba8;
+  color: #fff;
+  padding-right: 1em;
+  padding-left: 0.6em;
+}
+
+#memory {
+  margin-right: 0.8em;
+}
