@@ -1,5 +1,5 @@
 ###----- EXPORTS -----###
-export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$PATH:$HOME/.local/bin/:/usr/local/go/bin"
 export MYVIMRC="$HOME/.config/nvim/"
 
 ###----- PROMPT -----###

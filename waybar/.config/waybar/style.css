@@ -1,92 +1,110 @@
+@define-color bg_color #2e3440;
+@define-color bg_alt #4c566a;
+@define-color text #eceff4;
+@define-color blue #5e81ac;
+@define-color dark_blue #81a1c1;
+@define-color cyan #88c0d0;
+@define-color red #bf616a;
+@define-color orange #d08770;
+@define-color yellow #ebcb8b;
+@define-color dark_green #8fbcbb;
+@define-color green #a3be8c;
+@define-color magenta #b48ead;
+
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: "SauceCodePro Nerd Font Propo";
   font-size: 14px;
-  padding: 0;
+  min-height: 0;
   margin: 0;
-  /* Tokyonight colors */
-  /* --foreground: #cdd6f4; */
-  /* --foreground-inactive: #313244 ; */
-  /* --background: #11111b; */
-  /* --background-alt: #313244*/
-  /* --background-active:	#89b4fa; */
+  padding: 0;
 }
 
-#waybar {
-  /* background-color: rgb(17, 17, 27); */
+window#waybar {
+  background-color: transparent;
+  color: @text;
+}
+
+#workspaces {
+  background: @bg_color;
+  padding: 0;
+  border-radius: 0.2em;
+}
+
+#workspaces button {
+  padding: 0.2em;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  border-radius: 0.2em;
+}
+
+#workspaces button.active {
+  background-color: @blue;
+}
+
+#workspaces button.empty {
+  color: @bg_alt;
+}
+
+window#waybar.empty #window {
   background-color: transparent;
 }
 
-#tags {
-  background-color: #313244;
-}
-
-#tags button {
-  background-color: transparent;
-  color: rgba(205, 214, 244, 0.4);
-  /* padding-left: 1em; */
-  /* padding-right: 1.3em; */
-}
-
-#tags button.occupied {
-  color: #cdd6f4;
-}
-
-#tags button.focused {
-  background-color: #89b4fa;
-  color: #fff;
-  border-radius: 3px;
-}
-
-#tags,
-#clock,
-#pulseaudio,
-#custom-power,
+#window,
 #language,
-#battery,
-#backlight,
+#cpu,
+#audio,
 #tray,
-#usage,
-#sound,
-#network {
-  background-color: #313244;
-  color: #cdd6f4;
-  border-radius: 3px;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-left: 0.3em;
-}
-
-#network {
-  color: #eba0ac;
-}
-
-#usage {
-  color: #b4befe;
-}
-
+#memory,
 #clock {
-  color: #94e2d5;
-}
-
-#pulseaudio {
-  color: #89b4fa;
-}
-
-#backlight {
-  color: #f9e2af;
-}
-
-#battery {
-  color: #a6e3a1;
+  background: @bg_color;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  border-radius: 0.2em;
 }
 
 #custom-power {
-  background-color: #f38ba8;
-  color: #fff;
-  padding-right: 1em;
-  padding-left: 0.6em;
+  background-color: @blue;
+  color: @bg_color;
+  padding: 0 0.6em;
+  border-radius: 0.2em;
+}
+
+#custom-run {
+  background: @bg_color;
+  color: @red;
+  padding: 0 0.5em;
+}
+
+#window {
+  background-color: @blue;
+}
+
+
+#cpu {
+  color: @dark_green;
 }
 
 #memory {
-  margin-right: 0.8em;
+  color: @green;
+}
+
+#pulseaudio {
+  color: @cyan;
+}
+
+#clock {
+  color: @magenta;
+}
+
+#language {
+  color: @yellow;
+}
+
+#pulseaudio.output {
+  margin-right: 0.5em;
+}
+
+#pulseaudio.input.source-muted,
+#pulseaudio.output.muted {
+  color: @red;
 }
