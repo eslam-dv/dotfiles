@@ -2,6 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
+	dependencies = { "nvim-treesitter/nvim-treesitter-context" },
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 

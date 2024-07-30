@@ -14,7 +14,6 @@ return {
 					},
 				},
 			},
-			highlights = require("nord.plugins.bufferline").akinsho(),
 		})
 	end,
 }
