@@ -13,8 +13,7 @@ fi
 # Source/Load Zap
 source "${ZAP_DIR}/zap.zsh"
 
-# History
-HISTSIZE=5000
+HISTSIZE=1000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -26,26 +25,15 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Stop Beep Noise
+# Stop been noise
 unsetopt beep
 
 # Install zsh plugins
-plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "zsh-users/zsh-completions"
-plug "zsh-users/zsh-autosuggestions"
-
-# Load Completions
-autoload -U compinit && compinit
 
 # Keybindings
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
-
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
 
 # Aliases
 alias ls="eza --icons=always"
@@ -57,6 +45,7 @@ alias ...="cd ../.."
 alias cl="clear"
 alias zc="nvim ~/dotfiles/.zshrc"
 alias vc="nvim ~/dotfiles/.config/nvim/"
+alias src="source ~/.zshrc"
 alias ff="fastfetch"
 
 # Integration
