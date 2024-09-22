@@ -26,6 +26,7 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 5
 opt.sidescrolloff = 5
+opt.fillchars = {eob = " "}
 
 -----------------------------------------------------------
 -- Tabs, indent

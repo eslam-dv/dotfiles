@@ -35,7 +35,7 @@ return {
     })
 
     local config = {
-      virtual_text = false,
+      virtual_text = true,
       signs = {
         active = signs,
       },
@@ -45,7 +45,7 @@ return {
       float = {
         focusable = true,
         style = "minimal",
-        border = "rounded",
+        border = "solid",
         source = "always",
         header = "",
         prefix = "",

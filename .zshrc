@@ -1,6 +1,6 @@
 # Environment Variables
 export PATH=$PATH:/usr/local/go/bin
-export UV_USE_IO_URING=0 # yarn
+# export UV_USE_IO_URING=0 # yarn
 
 # Zap setup
 ZAP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zap"
