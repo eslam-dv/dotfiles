@@ -58,7 +58,6 @@ return {
 				{ name = "path" }, -- file system paths
 			}),
 		})
-
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	end,
 }

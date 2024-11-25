@@ -11,6 +11,7 @@
 #
 ######################################################################
 export MYVIMRC=~/AppData/Local/nvim
+export DEV=/d/Dev/
 
 # set -o vi
 
@@ -21,16 +22,6 @@ HISTSIZE=2000
 HISTFILESIZE=2000
 
 # shopt -s histappend
-
-blk='\[\033[01;30m\]'   # Black
-red='\[\033[01;31m\]'   # Red
-grn='\[\033[01;32m\]'   # Green
-ylw='\[\033[01;33m\]'   # Yellow
-blu='\[\033[01;34m\]'   # Blue
-pur='\[\033[01;35m\]'   # Purple
-cyn='\[\033[01;36m\]'   # Cyan
-wht='\[\033[01;37m\]'   # White
-clr='\[\033[00m\]'      # Reset
 
 alias gs='git status'
 alias ga='git add'
@@ -51,7 +42,7 @@ alias lla='ls -la'
 alias ..='cd ..;pwd'
 alias ...='cd ../..;pwd'
 alias ....='cd ../../..;pwd'
-alias c='clear'
+alias cl='clear'
 alias h='history'
 alias tree='tree --dirsfirst -F'
 alias mkdir='mkdir -p -v'
@@ -64,6 +55,16 @@ bind '"\e[B": history-search-forward'
 function hg() {
     history | grep "$1";
 }
+
+blk='\[\033[01;30m\]'   # Black
+red='\[\033[01;31m\]'   # Red
+grn='\[\033[01;32m\]'   # Green
+ylw='\[\033[01;33m\]'   # Yellow
+blu='\[\033[01;34m\]'   # Blue
+pur='\[\033[01;35m\]'   # Purple
+cyn='\[\033[01;36m\]'   # Cyan
+wht='\[\033[01;37m\]'   # White
+clr='\[\033[00m\]'      # Reset
 
 function parse_git_dirty {
   STATUS="$(git status 2> /dev/null)"
@@ -79,4 +80,4 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
 }
 
-PS1=${blu}'$(parse_git_branch)'${pur}' \W'${grn}'  '${clr}
+PS1=${blu}'\W'${pur}'$(parse_git_branch)'${grn}'  '${clr}
