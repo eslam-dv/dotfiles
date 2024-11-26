@@ -10,8 +10,9 @@
 #
 #
 ######################################################################
-export MYVIMRC=~/AppData/Local/nvim
-export DEV=/d/Dev/
+export MYVIMRC=~/.config/nvim/
+export DEV=~/Dev/
+export PATH=$PATH:/usr/local/go/bin
 
 # set -o vi
 
@@ -31,11 +32,12 @@ alias gl='git log --oneline'
 alias gb='git checkout -b'
 alias gd='git diff'
 
-alias rm='rm -i' #-i prompts user before deletion
-alias cp='cp -i' #-i prompts user before overwriting
 alias src='source ~/.bashrc'
 alias vimrc='nvim $MYVIMRC'
 alias bashrc='nvim ~/.bashrc'
+alias rm='rm -i' #-i prompts user before deletion
+alias cp='cp -i' #-i prompts user before overwriting
+alias ls='exa --icons'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -80,4 +82,7 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
 }
 
-PS1=${blu}'\W'${pur}'$(parse_git_branch)'${grn}'  '${clr}
+# 2 lines
+# PS1="\n${blu}\w${pur}\$(parse_git_branch)\n${grn}\$${clr} "
+# single line
+PS1="\n${blu}\W${pur}\$(parse_git_branch)${grn} \$${clr} "

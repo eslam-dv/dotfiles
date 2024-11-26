@@ -43,6 +43,7 @@ return {
     local opts = { noremap = true, silent = true }
 
     keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+    keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
     keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
     keymap("n", "<leader>fs", ":Telescope live_grep<CR>", opts)
     keymap("n", "<leader>fc", ":Telescope grep_string<CR>", opts)

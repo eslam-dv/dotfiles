@@ -29,6 +29,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- Split Windows
 keymap("n", "sv", ":vsplit<CR>", opts)
 keymap("n", "sh", ":split<CR>", opts)
+keymap("n", "se", "<C-w>=", opts)
 keymap("n", "sx", ":close<CR>", opts)
 
 -- Resize with arrows
@@ -37,9 +38,12 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Navigate tabs
+keymap("n", "<S-f>", ":tabnew<CR>", opts)
+keymap("n", "<S-n>", ":tabnew %<CR>", opts)
+keymap("n", "<S-q>", ":tabclose<CR>", opts)
+keymap("n", "<S-l>", ":tabn<CR>", opts)
+keymap("n", "<S-h>", ":tabp<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
