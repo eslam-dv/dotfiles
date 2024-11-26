@@ -85,4 +85,4 @@ function parse_git_branch {
 # 2 lines
 # PS1="\n${blu}\w${pur}\$(parse_git_branch)\n${grn}\$${clr} "
 # single line
-PS1="\n${blu}\W${pur}\$(parse_git_branch)${grn} \$${clr} "
+PS1="${blu}\W${pur}\$(parse_git_branch)${grn} \$${clr} "

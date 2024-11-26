@@ -13,12 +13,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
--- Ctrl + a & Ctrl + s
-keymap("n", "<C-a>", "ggVG", opts)
-keymap("n", "<C-s>", ":w<CR>", opts)
-
--- remove highlihgting
-keymap("n", "<leader>h", ":nohl<CR>", opts)
+keymap("n", "<C-a>", "ggVG", opts) -- select all with ctrl + a
+keymap("n", "<C-s>", ":w<CR>", opts) -- save file with ctrl + s
+keymap("n", "<leader>h", ":nohl<CR>", opts) -- remove highlihgting
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -27,10 +24,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Split Windows
-keymap("n", "sv", ":vsplit<CR>", opts)
-keymap("n", "sh", ":split<CR>", opts)
-keymap("n", "se", "<C-w>=", opts)
-keymap("n", "sx", ":close<CR>", opts)
+keymap("n", "<leader>sv", ":vsplit<CR>", opts)
+keymap("n", "<leader>sh", ":split<CR>", opts)
+keymap("n", "<leader>se", "<C-w>=", opts)
+keymap("n", "<leader>sx", ":close<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -39,11 +36,14 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate tabs
-keymap("n", "<S-f>", ":tabnew<CR>", opts)
-keymap("n", "<S-n>", ":tabnew %<CR>", opts)
-keymap("n", "<S-q>", ":tabclose<CR>", opts)
+keymap("n", "<leader>tn", ":tabnew<CR>", opts)
+keymap("n", "<leader>tf", ":tabnew %<CR>", opts)
+keymap("n", "<leader>tx", ":tabclose<CR>", opts)
 keymap("n", "<S-l>", ":tabn<CR>", opts)
 keymap("n", "<S-h>", ":tabp<CR>", opts)
+
+-- close buffer
+keymap("n", "<S-q>", ":bdelete!<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)

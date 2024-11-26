@@ -22,25 +22,20 @@ return {
 		-- Diagnostic Config --
 		vim.diagnostic.config({
 			virtual_text = false,
+      underline = true,
 			severity_sort = true,
+      update_in_insert = false,
 			float = {
-				border = "rounded",
+				border = "none",
 				source = "always",
 			},
 		})
 
-		local sign = function(opts)
-			vim.fn.sign_define(opts.name, {
-				texthl = opts.name,
-				text = opts.text,
-				numhl = "",
-			})
+		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
-
-		sign({ name = "DiagnosticSignError", text = " " })
-		sign({ name = "DiagnosticSignWarn", text = " " })
-		sign({ name = "DiagnosticSignHint", text = " " })
-		sign({ name = "DiagnosticSignInfo", text = " " })
 
 		-- Keymaps Config --
 		local opts = { silent = true, noremap = true }
