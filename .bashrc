@@ -12,6 +12,7 @@
 ######################################################################
 export MYVIMRC=~/.config/nvim/
 export DEV=~/Dev/
+export EDITOR=nvim
 export PATH=$PATH:/usr/local/go/bin
 
 # set -o vi
