@@ -20,16 +20,22 @@ return {
 			vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, cmp_capabilities)
 
 		-- Diagnostic Config --
-		vim.diagnostic.config({
-			virtual_text = false,
-      underline = true,
+		local config = {
+			virtual_text = false, -- disable virtual text
+			update_in_insert = false,
+			underline = true,
 			severity_sort = true,
-      update_in_insert = false,
 			float = {
-				border = "none",
+				focusable = true,
+				style = "minimal",
+				border = "rounded",
 				source = "always",
+				header = "",
+				prefix = "",
 			},
-		})
+		}
+
+		vim.diagnostic.config(config)
 
 		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 		for type, icon in pairs(signs) do

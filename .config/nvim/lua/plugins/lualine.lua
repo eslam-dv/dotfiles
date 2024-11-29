@@ -53,8 +53,8 @@ return {
 			},
 			sections = {
 				lualine_a = { mode },
-				lualine_b = { "filename" },
-				lualine_c = { branch, diagnostics },
+				lualine_b = { branch },
+				lualine_c = { diagnostics },
 				lualine_x = { diff, spaces, "encoding" },
 				lualine_y = { "filetype" },
 				lualine_z = { "location" },
