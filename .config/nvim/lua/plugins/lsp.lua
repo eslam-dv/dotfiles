@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		"williamboman/mason.nvim",
+		{ "williamboman/mason.nvim", event = "VeryLazy" },
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
@@ -76,7 +76,7 @@ return {
 				-- Renames all references to the symbol under cursor
 				bufmap("n", "<F2>", ":lua vim.lsp.buf.rename()<CR>")
 				-- List's code actions available at the current cursor position
-				bufmap("n", "<F4>", ":lua vim.lsp.buf.code_actions()<CR>")
+				bufmap("n", "<F4>", ":lua vim.lsp.buf.code_action()<CR>")
 			end,
 		})
 
@@ -95,8 +95,10 @@ return {
 			ts_ls = {},
 			html = {},
 			cssls = {},
+			jsonls = {},
 		}
 
+		-- Linters & Formatters
 		local tools = { "stylua", "prettierd", "gofumpt", "goimports", "eslint_d" }
 
 		local servers_to_install = {}

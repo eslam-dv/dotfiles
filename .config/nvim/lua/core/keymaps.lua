@@ -36,11 +36,11 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate tabs
-keymap("n", "<leader>tn", ":tabnew<CR>", opts)
-keymap("n", "<leader>tf", ":tabnew %<CR>", opts)
-keymap("n", "<leader>tx", ":tabclose<CR>", opts)
-keymap("n", "<S-l>", ":tabn<CR>", opts)
-keymap("n", "<S-h>", ":tabp<CR>", opts)
+keymap("n", "<leader>tn", ":tabnew<CR>", opts) -- new tab
+keymap("n", "<leader>tf", ":tabnew %<CR>", opts) -- open current buffer in new tab
+keymap("n", "<leader>tx", ":tabclose<CR>", opts) -- close tab
+keymap("n", "<S-l>", ":tabn<CR>", opts) -- next tab
+keymap("n", "<S-h>", ":tabp<CR>", opts) -- previous tab
 
 -- close buffer
 keymap("n", "<S-q>", ":bdelete!<CR>", opts)
