@@ -11,9 +11,9 @@
 #
 ######################################################################
 export MYVIMRC=~/.config/nvim/
-export DEV=~/Dev/
 export EDITOR=nvim
-export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:/usr/sbin"
+export FZF_DEFAULT_OPTS='--height 40%'
 
 # set -o vi
 
@@ -34,11 +34,11 @@ alias gb='git checkout -b'
 alias gd='git diff'
 
 alias src='source ~/.bashrc'
-alias vimrc='nvim $MYVIMRC'
-alias bashrc='nvim ~/.bashrc'
+alias vrc='nvim $MYVIMRC'
+alias brc='nvim ~/.bashrc'
 alias rm='rm -i' #-i prompts user before deletion
 alias cp='cp -i' #-i prompts user before overwriting
-alias ls='exa --icons'
+alias ls='eza --icons --group-directories-first'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -48,11 +48,16 @@ alias ....='cd ../../..;pwd'
 alias cl='clear'
 alias h='history'
 alias tree='tree --dirsfirst -F'
-alias mkdir='mkdir -p -v'
+alias ff='fastfetch'
 
 # UP and DOWN arrow keys to search history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+
+# cd with zoxide
+eval "$(zoxide init bash --cmd cd)"
+# Set up fzf key bindings and fuzzy completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
 function hg() {
