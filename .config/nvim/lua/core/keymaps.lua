@@ -13,6 +13,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
+keymap("n", "<leader>e", ":Exp<CR>", opts) -- open netrw
 keymap("n", "<C-a>", "ggVG", opts) -- select all with ctrl + a
 keymap("n", "<C-s>", ":w<CR>", opts) -- save file with ctrl + s
 keymap("n", "<leader>h", ":nohl<CR>", opts) -- remove highlihgting

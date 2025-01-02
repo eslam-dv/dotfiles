@@ -12,7 +12,7 @@
 ######################################################################
 export MYVIMRC=~/.config/nvim/
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:/usr/sbin"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:/usr/sbin"
 export FZF_DEFAULT_OPTS='--height 40%'
 
 # set -o vi
@@ -22,6 +22,9 @@ HISTTIMEFORMAT="%F %T "
 HISTCONTROL="erasedups:ignorespace"
 HISTSIZE=2000
 HISTFILESIZE=2000
+
+# disable beep sound
+bind 'set bell-style none'
 
 # shopt -s histappend
 
@@ -34,7 +37,7 @@ alias gb='git checkout -b'
 alias gd='git diff'
 
 alias src='source ~/.bashrc'
-alias vrc='nvim $MYVIMRC'
+alias vrc='cd $MYVIMRC && nvim .'
 alias brc='nvim ~/.bashrc'
 alias rm='rm -i' #-i prompts user before deletion
 alias cp='cp -i' #-i prompts user before overwriting
@@ -57,7 +60,7 @@ bind '"\e[B": history-search-forward'
 # cd with zoxide
 eval "$(zoxide init bash --cmd cd)"
 # Set up fzf key bindings and fuzzy completion
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
 function hg() {
@@ -88,7 +91,4 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
 }
 
-# 2 lines
-# PS1="\n${blu}\w${pur}\$(parse_git_branch)\n${grn}\$${clr} "
-# single line
 PS1="${blu}\W${pur}\$(parse_git_branch)${grn} \$${clr} "

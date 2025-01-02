@@ -25,6 +25,8 @@ return {
 				"html",
 				"css",
 				"markdown",
+        "go",
+        "bash"
 			},
 			auto_install = true,
 			sync_install = false,
