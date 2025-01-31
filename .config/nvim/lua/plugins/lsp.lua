@@ -22,7 +22,7 @@ return {
 		-- Diagnostic Config --
 		local config = {
 			virtual_text = false, -- disable virtual text
-			update_in_insert = true,
+			update_in_insert = false,
 			underline = true,
 			severity_sort = true,
 			float = {

@@ -13,7 +13,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
-keymap("n", "<leader>e", ":Exp<CR>", opts) -- open netrw
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- open file explorer
 keymap("n", "<C-a>", "ggVG", opts) -- select all with ctrl + a
 keymap("n", "<C-s>", ":w<CR>", opts) -- save file with ctrl + s
 keymap("n", "<leader>h", ":nohl<CR>", opts) -- remove highlihgting
@@ -49,6 +49,14 @@ keymap("n", "<S-q>", ":bdelete!<CR>", opts)
 -- Move text up and down
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 keymap("n", "<A-k>", ":m .-2<CR>==", opts)
+
+-- LaTex
+-- Define a command to compile the current LaTeX file and open it in Zathura
+vim.api.nvim_create_user_command('Zathura', function()
+    local filename = vim.fn.expand('%:r') -- Get the current file name without extension
+    vim.cmd('!zathura ' .. filename .. '.pdf &') -- Open the PDF in Zathura
+end, {})
+keymap("n", "<leader>z", ":Zathura<CR>", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
