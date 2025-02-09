@@ -1,21 +1,20 @@
 return {
-	"nvim-tree/nvim-tree.lua",
-	config = function()
-		-- disable netrw
-		vim.g.loaded_netrw = 1
-		vim.g.loaded_netrwPlugin = 1
+  "nvim-tree/nvim-tree.lua",
+  config = function()
 
-		-- setup
-		require("nvim-tree").setup({
-			sort = {
-				sorter = "case_sensitive",
-			},
-			view = {
-				width = 30,
-			},
-			renderer = {
-				group_empty = true,
-			},
-		})
-	end,
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    require("nvim-tree").setup({
+      view = {
+        width = 30,
+        relativenumber = true
+      },
+      renderer = {
+        indent_markers = {
+          enable = true,
+        },
+      },
+    })
+  end
 }

@@ -1,0 +1,121 @@
+{
+  "height": 20,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "hyprland/language",
+    "network",
+    "backlight",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "empty": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": 5 // 5 workspaces by default on every monitor
+    }
+  },
+  "hyprland/window": {
+    "format": "<span weight='bold' >{class}</span>",
+    "max-length": 120,
+    "icon": false,
+    "icon-size": 13
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "en",
+    "format-ar": "ar"
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 8
+  },
+  "clock": {
+    // "timezone": "Africa/Cairo",
+    "format": " {:%I:%M %p}",
+    "format-alt": " {:%d/%m/%Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      }
+    }
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󱩎",
+      "󱩏",
+      "󱩐",
+      "󱩑",
+      "󱩒",
+      "󱩓",
+      "󱩔",
+      "󱩕",
+      "󱩖",
+      "󰛨"
+    ]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󱐋 {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon} {volume}% {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+  "network": {
+    "interface": "wlp3s0",
+    "format-icons": [
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰈀",
+    "tooltip-format": "{ifname} via {gwaddr} 󱘖",
+    "format-disconnected": "󰤮"
+  }
+}

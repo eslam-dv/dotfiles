@@ -1,13 +1,17 @@
 return {
-	"akinsho/toggleterm.nvim",
-	version = "*",
-	opts = {
-		size = 10,
-		open_mapping = [[<c-\>]],
-		hide_numbers = true,
-		start_in_insert = true,
-		direction = "horizontal",
-		close_on_exit = true,
-		shell = "/bin/bash",
-	},
+  "akinsho/toggleterm.nvim",
+  opts = {
+    size = 20,
+    open_mapping = [[<c-\>]],
+    direction = "float",
+    float_opts = {
+      border = "curved",
+      winblend = 0,
+      highlights = {
+        border = "Normal",
+        background = "Normal",
+      },
+    },
+    shell = vim.o.shell,
+  }
 }

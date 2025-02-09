@@ -41,7 +41,7 @@ alias vrc='cd $MYVIMRC && nvim .'
 alias brc='nvim ~/.bashrc'
 alias rm='rm -i' #-i prompts user before deletion
 alias cp='cp -i' #-i prompts user before overwriting
-alias ls='eza --icons --group-directories-first'
+alias ls='eza --icons'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -79,16 +79,19 @@ clr='\[\033[00m\]'      # Reset
 
 function parse_git_dirty {
   STATUS="$(git status 2> /dev/null)"
-  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf " >"; else printf ""; fi
+  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf " "; else printf ""; fi
   if echo ${STATUS} | grep -c "branch is ahead:" &> /dev/null; then printf " !"; else printf ""; fi
-  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf " +"; else printf ""; fi
+  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf " "; else printf ""; fi
   if echo ${STATUS} | grep -c "Untracked files:" &> /dev/null; then printf " ?"; else printf ""; fi
-  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf " *"; else printf ""; fi
-  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf " -"; else printf ""; fi
+  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf " "; else printf ""; fi
+  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf " "; else printf ""; fi
 }
 
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
+  BRANCH=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/")
+  if [[ -n "$BRANCH" ]]; then
+    printf " on  %s%s" "$BRANCH" "$(parse_git_dirty)"
+  fi
 }
 
-PS1="${blu}\W${pur}\$(parse_git_branch)${grn} \$${clr} "
+PS1="\n${blu}\w${pur}\$(parse_git_branch)\n${grn}${clr} "
