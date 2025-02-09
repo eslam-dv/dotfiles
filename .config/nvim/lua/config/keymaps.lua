@@ -55,9 +55,9 @@ vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { silent = true })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", { silent = true })
 
 -- Diagnostics
-map("n", "gl", "lua <CR>", "Open diagnostic float")
-map("n", "[d", "lua <CR>", "Jump to previous diagnostic")
-map("n", "]d", "lua <CR>", "Jump to next diagnostic")
+map("n", "gl", ":lua vim.diagnostic.open_float() <CR>", "Open diagnostic float")
+map("n", "[d", ":lua vim.diagnostic.goto_prev() <CR>", "Jump to previous diagnostic")
+map("n", "]d", ":lua vim.diagnostic.goto_next() <CR>", "Jump to next diagnostic")
 
 -- Plugins
 -- NvimTree
