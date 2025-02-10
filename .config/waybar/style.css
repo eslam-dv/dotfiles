@@ -1,123 +1,88 @@
 @import "themes/mocha.css";
 
 * {
-  font-family: "RobotoMono Nerd Font Propo";
-  font-weight: bold;
-  font-size: 12px;
-  min-height: 0;
+  font-family: RobotoMono Nerd Font Propo;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
 }
 
 #waybar {
-  background: transparent;
   color: @text;
-  margin: 3px 3px;
-}
-
-#workspaces {
-  border-radius: 1rem;
-  margin: 3px;
-  background-color: @surface0;
-  margin-left: 1rem;
+  background-color: @base;
 }
 
 #workspaces button {
-  color: @lavender;
-  border-radius: 1rem;
-  padding: 0.4rem;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+}
+
+#workspaces button.empty {
+  color: @surface2;
 }
 
 #workspaces button.active {
-  color: @pink;
-  border-radius: 1rem;
-}
-
-#workspaces button:hover {
-  color: @sapphire;
-  border-radius: 1rem;
-}
-
-#window,
-#tray,
-#backlight,
-#clock,
-#battery,
-#pulseaudio,
-#custom-lock,
-#custom-power,
-#language,
-#network {
   background-color: @surface0;
-  padding: 0.5rem 0.7rem;
-  margin: 3px 0;
+  border-radius: 3px;
+}
+
+#sound,
+#bat,
+#tray,
+#usage,
+#net {
+  background-color: @surface0;
+  border-radius: 3px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 0.3em;
+}
+
+#wireplumber,
+#battery,
+#memory,
+#language {
+  margin-right: 0.8em;
+}
+
+#memory {
+  color: @mauve;
+}
+
+#temperature {
+  color: @maroon;
 }
 
 #clock {
-  color: @blue;
-  border-radius: 0px 1rem 1rem 0px;
-  margin-right: 0.5rem;
+  color: @sky;
 }
 
-#network {
-  color: @orange;
+#wireplumber,
+#pulseaudio.input {
+  color: @peach;
+}
+
+#wireplumber.muted,
+#pulseaudio.source-muted {
+  color: @red;
 }
 
 #battery {
   color: @green;
 }
 
-#battery.charging {
-  color: @green;
-}
-
-@keyframes blink {
-    to {
-        background-color: @text;
-        color: @red;
-    }
-}
-
-#battery.critical:not(.charging) {
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
 #backlight {
   color: @yellow;
 }
 
-#backlight,
-#battery,
-#network,
 #language {
-  border-radius: 0;
+  color: @flamingo;
 }
 
-#pulseaudio {
-  color: @maroon;
-  border-radius: 1rem 0px 0px 1rem;
-  margin-left: 1rem;
+#network {
+  color: @teal;
 }
 
-#window {
-  color: @mauve;
-  border-radius: 1rem;
-}
-
-#custom-lock {
-  border-radius: 1rem 0px 0px 1rem;
-  color: @lavender;
-}
-
-#custom-power {
-  margin-right: 1rem;
-  border-radius: 0px 1rem 1rem 0px;
-  color: @red;
-}
-
-#tray {
-  margin-right: 1rem;
-  border-radius: 1rem;
+#bluetooth {
+  color: @blue;
 }

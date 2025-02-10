@@ -1,121 +1,133 @@
 {
-  "height": 20,
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 5,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "group/usage"
   ],
   "modules-center": [
-    "hyprland/window"
+    "clock"
   ],
   "modules-right": [
-    "pulseaudio",
-    "hyprland/language",
-    "network",
-    "backlight",
-    "battery",
-    "clock",
+    "group/sound",
+    "group/bat",
+    "group/net",
     "tray"
   ],
+
+  "group/sound": {
+    "orientation": "horizontal",
+    "modules": [
+      "wireplumber",
+      "pulseaudio#input"
+    ]
+  },
+
+  "group/usage": {
+    "orientation": "horizontal",
+    "modules": [
+      "memory",
+      "temperature"
+    ]
+  },
+  "group/bat": {
+    "orientation": "horizontal",
+    "modules": [
+      "battery",
+      "backlight"
+    ]
+  },
+  "group/net": {
+    "orientation": "horizontal",
+    "modules": [
+      "hyprland/language",
+      "network",
+      "bluetooth"
+    ]
+  },
   "hyprland/workspaces": {
     "format": "{icon}",
+    "on-click": "activate",
     "format-icons": {
-      "empty": "",
-      "default": ""
+      "1": "",
+      "2": "󰈹",
+      "3": "󰉋",
+      "4": "",
+      "5": ""
     },
+    "icon-size": 50,
+    "sort-by-number": true,
     "persistent-workspaces": {
-      "*": 5 // 5 workspaces by default on every monitor
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
     }
-  },
-  "hyprland/window": {
-    "format": "<span weight='bold' >{class}</span>",
-    "max-length": 120,
-    "icon": false,
-    "icon-size": 13
-  },
-  "hyprland/language": {
-    "format": "{}",
-    "format-en": "en",
-    "format-ar": "ar"
-  },
-  "tray": {
-    "icon-size": 13,
-    "spacing": 8
   },
   "clock": {
-    // "timezone": "Africa/Cairo",
-    "format": " {:%I:%M %p}",
-    "format-alt": " {:%d/%m/%Y}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b>{}</b></span>"
-      }
-    }
+    "format": "{:%d.%m.%Y | %I:%M %p}",
+    "tooltip": false
   },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon} {percent}%",
-    "format-icons": [
-      "󱩎",
-      "󱩏",
-      "󱩐",
-      "󱩑",
-      "󱩒",
-      "󱩓",
-      "󱩔",
-      "󱩕",
-      "󱩖",
-      "󰛨"
-    ]
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "max-volume": 100,
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "format-icons": [ "", "","" ],
+    "tooltip": false
+  },
+  "pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
   },
   "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
+    "bat": "BAT0",
+    "interval": 60,
     "format": "{icon} {capacity}%",
-    "format-charging": "󱐋 {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-icons": [
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ]
+    "format-icons": [ "", "", "", "", "" ]
   },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{icon} {volume}% {format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": "",
-    "format-muted": " {format_source}",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "on-click-right": "pavucontrol"
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃟"],
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 30,
+    "format": "󰍛 {used:0.1f}G"
+  },
+  "temperature": {
+    "format": " {temperatureC}°C"
   },
   "network": {
-    "interface": "wlp3s0",
-    "format-icons": [
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
-    "format-wifi": "{icon}",
+    "format": "",
     "format-ethernet": "󰈀",
-    "tooltip-format": "{ifname} via {gwaddr} 󱘖",
-    "format-disconnected": "󰤮"
+    "format-wifi": "{icon} ",
+    "format-disconnected": "󰤮",
+    "format-icons": [ "󰤟", "󰤢", "󰤥", "󰤨" ],
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip": false
+  },
+  "hyprland/language": {
+    "format": "{short}"
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 16
   }
 }
