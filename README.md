@@ -1,25 +1,24 @@
 # My Setup
-- OS: NixOS
+- OS: Arch linux
 - WM: Hyprland
 - Status bar: Waybar
 - Terminal: Wezterm
 
-### Dependencies
+#### Screenshot
+![Screenshot1](./screenshots/desktop.png)
 
-```
-stow # to manage dotfiels
-wezterm # terminal
+### Dependencies
+---
+
+- #### Hyprland
+```bash
+hyprland hyprpaper waybar xdg-desktop-portal-wlr xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
+pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber brightnessctl bluez blueman pavucontrol \
+nwg-look thunar thunar-archive-plugin thunar-volman gvfs firefox xarchiver ristretto vlc wofi wezterm \
+eza zoxide fastfetch
 ```
 
 - #### Neovim
-```
-neovim git nodejs npm ripgrep unzip wl-clipboard gcc
-```
-
-- #### Hyprland
-```
-hyprland waybar thunar ristretto xarchiver ffmpeg brightnessctl nwg-look \
-qt5ct hyprpaper bluez bluez-tools blueman networkmanager firefox xwayland \
-filezilla libreoffice vlc zathura wofi pipewire gvfs xdg-desktop-portal-gtk \
-xdg-desktop-portal-hyprland 
+```bash
+neovim git nodejs npm unzip ripgrep wl-clipboard gcc
 ```

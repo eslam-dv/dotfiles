@@ -15,6 +15,7 @@ opt.smartcase = true
 opt.smartindent = true
 opt.termguicolors = true
 opt.undofile = true
+opt.ignorecase = true
 opt.showmode = false
 opt.timeoutlen = 1000
 opt.updatetime = 1000
