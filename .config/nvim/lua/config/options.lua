@@ -8,7 +8,7 @@ opt.tabstop = 2
 opt.expandtab = true
 opt.wrap = false
 opt.scrolloff = 5
-opt.sidescrolloff = 5
+opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 opt.smartcase = true
@@ -22,3 +22,4 @@ opt.signcolumn = "yes"
 opt.clipboard:append({ "unnamedplus" })
 opt.completeopt = { "menuone", "noselect" }
 opt.mouse = "a"
+opt.syntax = "yes"

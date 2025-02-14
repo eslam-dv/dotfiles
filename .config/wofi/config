@@ -1,0 +1,15 @@
+width=600
+height=400
+mode=drun
+prompt=Search...
+allow_images=true
+insensitive=true
+no_actions=true
+key_up=Ctrl-k
+key_down=Ctrl-j
+location=center
+filter_rate=100
+allow_markup=true
+drun-display_generic=true
+hide_scroll=true
+term=wezterm

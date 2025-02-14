@@ -114,6 +114,9 @@
     bluez-tools
     blueman
     stow
+    texliveFull
+    gnumake
+    zotero
   ];
 
   fonts.packages = with pkgs; [

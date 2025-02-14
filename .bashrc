@@ -12,16 +12,16 @@
 ######################################################################
 export MYVIMRC=~/.config/nvim/
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:/usr/sbin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/go/bin"
 export FZF_DEFAULT_OPTS='--height 40%'
 
 # set -o vi
 
 ## HISTORY ##
 HISTTIMEFORMAT="%F %T "
-HISTCONTROL="erasedups:ignorespace"
 HISTSIZE=2000
 HISTFILESIZE=2000
+HISTCONTROL="erasedups:ignorespace"
 
 # disable beep sound
 bind 'set bell-style none'
@@ -94,4 +94,4 @@ function parse_git_branch {
   fi
 }
 
-PS1="\n${blu}\w${pur}\$(parse_git_branch)\n${grn}${clr} "
+PS1="${blu}\w${pur}\$(parse_git_branch)\n${grn}${clr} "
