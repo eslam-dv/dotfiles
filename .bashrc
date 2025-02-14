@@ -12,7 +12,7 @@
 ######################################################################
 export MYVIMRC=~/.config/nvim/
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/go/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin"
 export FZF_DEFAULT_OPTS='--height 40%'
 
 # set -o vi

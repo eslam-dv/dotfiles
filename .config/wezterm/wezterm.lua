@@ -23,4 +23,5 @@ return {
 	hide_tab_bar_if_only_one_tab = true,
 	force_reverse_video_cursor = true,
 	default_cursor_style = "SteadyBlock",
+  enable_wayland = false,
 }
