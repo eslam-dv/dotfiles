@@ -10,7 +10,7 @@ return {
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	font_size = 11,
 	line_height = 1.1,
-	color_scheme = "Catppuccin Mocha",
+  color_scheme = "tokyonight_night",
 	window_padding = {
 		left = 4,
 		right = 0,
