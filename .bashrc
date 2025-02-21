@@ -18,10 +18,10 @@ export FZF_DEFAULT_OPTS='--height 40%'
 # set -o vi
 
 ## HISTORY ##
-HISTTIMEFORMAT="%F %T "
-HISTSIZE=2000
-HISTFILESIZE=2000
-HISTCONTROL="erasedups:ignorespace"
+export HISTTIMEFORMAT="%F %T "
+export HISTSIZE=2000
+export HISTFILESIZE=2000
+export HISTCONTROL="erasedups:ignorespace"
 
 # disable beep sound
 bind 'set bell-style none'
