@@ -31,7 +31,8 @@
 #bat,
 #tray,
 #usage,
-#net {
+#net,
+#language {
   background-color: @surface0;
   border-radius: 3px;
   padding-left: 0.5em;
@@ -41,8 +42,7 @@
 
 #wireplumber,
 #battery,
-#memory,
-#language {
+#memory {
   margin-right: 0.8em;
 }
 

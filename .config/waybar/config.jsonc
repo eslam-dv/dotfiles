@@ -11,9 +11,10 @@
     "clock"
   ],
   "modules-right": [
+    "hyprland/language",
     "group/sound",
     "group/bat",
-    "group/net",
+    //"group/net",
     "tray"
   ],
 
@@ -42,7 +43,6 @@
   "group/net": {
     "orientation": "horizontal",
     "modules": [
-      "hyprland/language",
       "network",
       "bluetooth"
     ]
@@ -117,7 +117,7 @@
     "format": "",
     "format-ethernet": "󰈀",
     "format-wifi": "{icon} ",
-    "format-disconnected": "󰤮",
+    "format-disconnected": "󰤮 ",
     "format-icons": [ "󰤟", "󰤢", "󰤥", "󰤨" ],
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}",
@@ -133,7 +133,7 @@
     "format": "{short}"
   },
   "tray": {
-    "icon-size": 16,
+    "icon-size": 14,
     "spacing": 8
   }
 }
