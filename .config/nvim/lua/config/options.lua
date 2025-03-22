@@ -12,6 +12,7 @@ opt.softtabstop = 2           -- Set indent to 2
 opt.expandtab = true          -- Use space instead of tab
 opt.smartindent = true        -- Detect indentation
 opt.smartcase = true          -- Case independent search
+opt.ignorecase = true         -- Case independent search 
 opt.splitright = true         -- Open new vertical window right
 opt.splitbelow = true         -- Open new horizontal window below
 opt.wrap = false              -- Disable line wrap
