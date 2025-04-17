@@ -2,7 +2,7 @@
 - OS: Arch linux
 - WM: Hyprland
 - Status bar: Waybar
-- Terminal: Wezterm
+- Terminal: Alacritty
 
 #### Screenshot
 ![Screenshot1](./screenshots/desktop.png)
