@@ -41,7 +41,8 @@ alias vrc='cd $MYVIMRC && nvim .'
 alias brc='nvim ~/.bashrc'
 alias rm='rm -i' #-i prompts user before deletion
 alias cp='cp -i' #-i prompts user before overwriting
-alias ls='eza --icons'
+# alias ls='eza --icons'
+alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -67,31 +68,44 @@ function hg() {
     history | grep "$1";
 }
 
-blk='\[\033[01;30m\]'   # Black
-red='\[\033[01;31m\]'   # Red
-grn='\[\033[01;32m\]'   # Green
-ylw='\[\033[01;33m\]'   # Yellow
-blu='\[\033[01;34m\]'   # Blue
-pur='\[\033[01;35m\]'   # Purple
-cyn='\[\033[01;36m\]'   # Cyan
-wht='\[\033[01;37m\]'   # White
-clr='\[\033[00m\]'      # Reset
+# blk='\[\033[01;30m\]'   # Black
+# red='\[\033[01;31m\]'   # Red
+# grn='\[\033[01;32m\]'   # Green
+# ylw='\[\033[01;33m\]'   # Yellow
+# blu='\[\033[01;34m\]'   # Blue
+# pur='\[\033[01;35m\]'   # Purple
+# cyn='\[\033[01;36m\]'   # Cyan
+# wht='\[\033[01;37m\]'   # White
+# clr='\[\033[00m\]'      # Reset
+
+blk='\e[1;30m'
+red='\e[1;31m'
+grn='\e[1;32m'
+yle='\e[1;33m'
+blu='\e[1;34m'
+pur='\e[1;35m'
+cyn='\e[1;36m'
+wht='\e[1;37m'
+clr='\e[0m'
 
 function parse_git_dirty {
   STATUS="$(git status 2> /dev/null)"
-  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf " "; else printf ""; fi
+  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf "  "; else printf ""; fi
   if echo ${STATUS} | grep -c "branch is ahead:" &> /dev/null; then printf " !"; else printf ""; fi
-  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf " "; else printf ""; fi
+  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf "  "; else printf ""; fi
   if echo ${STATUS} | grep -c "Untracked files:" &> /dev/null; then printf " ?"; else printf ""; fi
-  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf " "; else printf ""; fi
-  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf " "; else printf ""; fi
+  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf "  "; else printf ""; fi
+  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf "  "; else printf ""; fi
 }
 
 function parse_git_branch {
   BRANCH=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/")
   if [[ -n "$BRANCH" ]]; then
-    printf " on  %s%s" "$BRANCH" "$(parse_git_dirty)"
+    printf " on ${red}%s%s${clr}" "$BRANCH" "$(parse_git_dirty)"
   fi
 }
+# two lines
+# PS1="${blu}\w\$(parse_git_branch)\n${grn}${clr} "
 
-PS1="${blu}\w${pur}\$(parse_git_branch)\n${grn}${clr} "
+# one line
+PS1="${blu}\W${clr}\$(parse_git_branch) ${grn}${clr} "
