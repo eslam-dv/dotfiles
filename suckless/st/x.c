@@ -1367,8 +1367,6 @@ xinit(int cols, int rows)
 	xsel.xtarget = XInternAtom(xw.dpy, "UTF8_STRING", 0);
 	if (xsel.xtarget == None)
 		xsel.xtarget = XA_STRING;
-
-	boxdraw_xinit(xw.dpy, xw.cmap, xw.draw, xw.vis);
 }
 
 int
@@ -1415,13 +1413,8 @@ xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x
 			yp = winy + font->ascent;
 		}
 
-		if (mode & ATTR_BOXDRAW) {
-			/* minor shoehorning: boxdraw uses only this ushort */
-			glyphidx = boxdrawindex(&glyphs[i]);
-		} else {
-			/* Lookup character index with default font. */
-			glyphidx = XftCharIndex(xw.dpy, font->match, rune);
-		}
+		/* Lookup character index with default font. */
+		glyphidx = XftCharIndex(xw.dpy, font->match, rune);
 		if (glyphidx) {
 			specs[numspecs].font = font->match;
 			specs[numspecs].glyph = glyphidx;
@@ -1549,10 +1542,6 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 		bg = &dc.col[base.bg];
 	}
 
-	/* Change basic system colors [0-7] to bright system colors [8-15] */
-	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_BOLD && BETWEEN(base.fg, 0, 7))
-		fg = &dc.col[base.fg + 8];
-
 	if (IS_SET(MODE_REVERSE)) {
 		if (fg == &dc.col[defaultfg]) {
 			fg = &dc.col[defaultbg];
@@ -1600,47 +1589,40 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	if (base.mode & ATTR_INVISIBLE)
 		fg = bg;
 
-  
-    if (dmode & DRAW_BG) {
-        /* Intelligent cleaning up of the borders. */
-        if (x == 0) {
-            xclear(0, (y == 0)? 0 : winy, borderpx,
-                   winy + win.ch +
-                   ((winy + win.ch >= borderpx + win.th)? win.h : 0));
-        }
-        if (winx + width >= borderpx + win.tw) {
-            xclear(winx + width, (y == 0)? 0 : winy, win.w,
-                   ((winy + win.ch >= borderpx + win.th)? win.h : (winy + win.ch)));
-        }
-        if (y == 0)
-            xclear(winx, 0, winx + width, borderpx);
-        if (winy + win.ch >= borderpx + win.th)
-            xclear(winx, winy + win.ch, winx + width, win.h);
-        /* Fill the background */
-        XftDrawRect(xw.draw, bg, winx, winy, width, win.ch);
-    }
+  if (dmode & DRAW_BG) {
+      /* Intelligent cleaning up of the borders. */
+      if (x == 0) {
+          xclear(0, (y == 0)? 0 : winy, borderpx,
+                 winy + win.ch +
+                 ((winy + win.ch >= borderpx + win.th)? win.h : 0));
+      }
+      if (winx + width >= borderpx + win.tw) {
+          xclear(winx + width, (y == 0)? 0 : winy, win.w,
+                 ((winy + win.ch >= borderpx + win.th)? win.h : (winy + win.ch)));
+      }
+      if (y == 0)
+          xclear(winx, 0, winx + width, borderpx);
+      if (winy + win.ch >= borderpx + win.th)
+          xclear(winx, winy + win.ch, winx + width, win.h);
+      /* Fill the background */
+      XftDrawRect(xw.draw, bg, winx, winy, width, win.ch);
+  }
 
-    if (dmode & DRAW_FG) {
-        /* Render the glyphs. */
-        // XftDrawGlyphFontSpec(xw.draw, fg, specs, len);
-    	if (base.mode & ATTR_BOXDRAW) {
-        drawboxes(winx, winy, width / len, win.ch, fg, bg, specs, len);
-      } else {
-        /* Render the glyphs. */
-        XftDrawGlyphFontSpec(xw.draw, fg, specs, len);
+  if (dmode & DRAW_FG) {
+      /* Render the glyphs. */
+      XftDrawGlyphFontSpec(xw.draw, fg, specs, len);
+
+      /* Render underline and strikethrough. */
+      if (base.mode & ATTR_UNDERLINE) {
+          XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent + 1,
+                      width, 1);
       }
 
-        /* Render underline and strikethrough. */
-        if (base.mode & ATTR_UNDERLINE) {
-            XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent + 1,
-                        width, 1);
-        }
-
-        if (base.mode & ATTR_STRUCK) {
-            XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent / 3,
-                        width, 1);
-        }
-    }
+      if (base.mode & ATTR_STRUCK) {
+          XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent / 3,
+                      width, 1);
+      }
+  }
 }
 
 void
@@ -1657,16 +1639,14 @@ void
 xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og, Line line, int len)
 {
 	Color drawcol;
-	XRenderColor colbg;
 
 	/* remove the old cursor */
 	if (selected(ox, oy))
 		og.mode ^= ATTR_REVERSE;
 
-  /* Redraw the line where cursor was previously.
-   * It will restore wide glyphs and ligatures broken by the cursor. */
+	/* Redraw the line where cursor was previously.
+	 * It will restore wide glyphs and ligatures broken by the cursor. */
 	xdrawline(line, 0, oy, len);
-
 
 	if (IS_SET(MODE_HIDE))
 		return;
@@ -1674,7 +1654,7 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og, Line line, int le
 	/*
 	 * Select the right color for the right mode.
 	 */
-	g.mode &= ATTR_BOLD|ATTR_ITALIC|ATTR_UNDERLINE|ATTR_STRUCK|ATTR_WIDE|ATTR_BOXDRAW;
+	g.mode &= ATTR_BOLD|ATTR_ITALIC|ATTR_UNDERLINE|ATTR_STRUCK|ATTR_WIDE;
 
 	if (IS_SET(MODE_REVERSE)) {
 		g.mode |= ATTR_REVERSE;
@@ -1690,21 +1670,11 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og, Line line, int le
 		if (selected(cx, cy)) {
 			g.fg = defaultfg;
 			g.bg = defaultrcs;
-		} else if (!(og.mode & ATTR_REVERSE)) {
-			unsigned long col = g.bg;
-			g.bg = g.fg;
-			g.fg = col;
-		}
-
-		if (IS_TRUECOL(g.bg)) {
-			colbg.alpha = 0xffff;
-			colbg.red = TRUERED(g.bg);
-			colbg.green = TRUEGREEN(g.bg);
-			colbg.blue = TRUEBLUE(g.bg);
-			XftColorAllocValue(xw.dpy, xw.vis, xw.cmap, &colbg, &drawcol);
 		} else {
-			drawcol = dc.col[g.bg];
+			g.fg = defaultbg;
+			g.bg = defaultcs;
 		}
+		drawcol = dc.col[g.bg];
 	}
 
 	/* draw the new one */

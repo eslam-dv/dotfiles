@@ -11,6 +11,7 @@ static const char unknown_str[] = "n/a";
 
 /*
  * function            description                     argument (example)
+ *
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
@@ -55,6 +56,7 @@ static const char unknown_str[] = "n/a";
  *                                                     thermal zone on FreeBSD
  *                                                     (tz0, tz1, etc.)
  * uid                 UID of current user             NULL
+ * up                  interface is running            interface name (eth0)
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
@@ -63,10 +65,11 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function       format           argument */
-  { netspeed_rx,    "%sB/s | ",      "wlp3s0" },
-  { run_command,    "󰕾 %s%% | ",     "pamixer --get-volume" },
-  { run_command,    "󰃞 %s%% | ",     "light -G" },
-  { battery_perc,   "󰁹 %s%% | ",     "BAT0" },
-	{ datetime,        "%s |",           "(%a) %d %b | %I:%M %p" },
+	/* function       format          argument */
+  { run_command,   "  %s%% ",        "pamixer --get-volume" },
+  { run_command,   " 󰃠 %s%% ",        "light -G" },
+  { wifi_perc,     "  %s%% ",    "wlp3s0" },
+  { battery_perc,  " 󰁹 %s%% ",    "BAT0" },
+  { datetime,      "  %s ",      "%d-%m-%Y" },
+  { datetime,      "  %s ",      "%I:%M %p" },
 };
