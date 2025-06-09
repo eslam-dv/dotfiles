@@ -39,8 +39,8 @@ map("n", "<S-h>", ":bprevious<CR>")
 map("n", "<S-q>", ":bdelete!<CR>") -- close buffer
 
 -- Move text up and down
-map("n", "<A-j>", ":m .+1<CR>==")
-map("n", "<A-k>", ":m .-2<CR>==")
+-- map("n", "<A-j>", ":m .+1<CR>==")
+-- map("n", "<A-k>", ":m .-2<CR>==")
 
 -- Clear search highlights
 map("n", "<leader>h", ":nohl<CR>")
@@ -83,8 +83,8 @@ map("v", "p", '"_dP')
 -- Move text up and down
 map("x", "J", ":m '>+1<CR>gv=gv")
 map("x", "K", ":m '<-2<CR>gv=gv")
-map("x", "<A-j>", ":m '>+1<CR>gv=gv")
-map("x", "<A-k>", ":m '<-2<CR>gv=gv")
+-- map("x", "<A-j>", ":m '>+1<CR>gv=gv")
+-- map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Terminal --
 -- Better terminal navigation
