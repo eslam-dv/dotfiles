@@ -171,7 +171,8 @@ exec swayidle -w \
 bar {
    position top
    font "Cascaida Mono 10"
-   status_command while ~/.config/sway/scripts/sway_bar.sh; do sleep 1; done
+   # status_command while ~/.config/sway/scripts/sway_bar.sh; do sleep 1; done
+   status_command ~/.config/sway/scripts/swaystat.sh
 
    colors {
        statusline #ffffff
