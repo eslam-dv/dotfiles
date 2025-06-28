@@ -1,3 +1,8 @@
+## Startup Apps
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+exec nm-applet
+exec mako
+
 ## Variables
 # Super as mod
 set $mod Mod4
@@ -10,12 +15,13 @@ set $left h
 
 # terminal
 set $term foot
+set $float_term foot --title="Foot Float"
 # app runner
 set $menu rofi -show drun
 # web browser
 set $browser firefox-esr
 # file manager
-set $files thunar
+set $files pcmanfm
 
 # volume
 set $upVol pamixer -i 5
@@ -28,7 +34,14 @@ set $lightUp brightnessctl s 10%+
 set $lightDown brightnessctl s 10%-
 
 # Lockscreen
-set $lock swaylock -e -i ~/Downloads/wallpaper_1.jpg -l -f -k
+set $lock swaylock -e -i ~/Downloads/wallpaper_1.jpg -l -f -k --indicator-idle-visible
+
+# Powermenu
+set $power rofi -show power-menu -modi power-menu:rofi-power-menu
+
+# Screenshots
+set $full_screen_shot grim - | wl-copy
+set $area_screen_shot grim -g "$(slurp)" - | wl-copy 
 
 ## Appearance
 # Wallpaper
@@ -58,6 +71,7 @@ input type:touchpad {
 ## Keybinds
 # Start terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $float_term
 
 # Start web browser
 bindsym $mod+b exec $browser
@@ -76,6 +90,13 @@ bindsym $mod+Shift+r reload
 
 # Lock screen
 bindsym $mod+escape exec $lock
+
+# Power Menu
+bindsym $mod+p exec $power
+
+# Screen Shots
+bindsym Print exec $full_screen_shot
+bindsym Print+Shift exec $area_screen_shot
 
 # Exit sway
 bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -160,9 +181,10 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # Idle config:
 #
 exec swayidle -w \
-         timeout 300 $lock \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep $lock
+         timeout 900  "$lock" \
+         timeout 1200 'systemctl suspend' \
+         before-sleep "$lock"
 
 #
 # Status Bar:
@@ -170,8 +192,7 @@ exec swayidle -w \
 # Read `man 5 sway-bar` for more information about this section.
 bar {
    position top
-   font "Cascaida Mono 10"
-   # status_command while ~/.config/sway/scripts/sway_bar.sh; do sleep 1; done
+   font "CaskaydiaCove Nerd Font Propo 10"
    status_command ~/.config/sway/scripts/swaystat.sh
 
    colors {
@@ -194,3 +215,6 @@ for_window [app_id="nwg-displays"] floating enable
 for_window [app_id="org.gnome.FileRoller"] floating enable
 for_window [app_id="thunar" title="File Operation Progress"] floating enable
 for_window [app_id="thunar" title="Confirm to replace files"] floating enable
+for_window [app_id="pcmanfm" title="Confirm File Replacing"] floating enable
+for_window [app_id="foot" title="Foot Float"] floating enable
+for_window [app_id="com.wolfram.Wolfram.14.2" title="WolframNB"] floating enable

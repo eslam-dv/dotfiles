@@ -14,6 +14,7 @@ export MYVIMRC=~/.config/nvim/
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin"
 export FZF_DEFAULT_OPTS='--height 40%'
+export XDG_CURRENT_DESKTOP=sway
 
 # Firefox on wayland
 export MOZ_ENABLE_WAYLAND=1
