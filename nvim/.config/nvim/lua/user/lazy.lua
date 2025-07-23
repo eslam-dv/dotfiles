@@ -20,7 +20,7 @@ require("lazy").setup({
   spec = {
     { import = "user.plugins" },
   },
-  install = { colorscheme = { "monokai-nightasty" } },
+  install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
 })

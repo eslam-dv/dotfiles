@@ -14,7 +14,7 @@ export MYVIMRC=~/.config/nvim/
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin"
 export FZF_DEFAULT_OPTS='--height 40%'
-export XDG_CURRENT_DESKTOP=sway
+# export XDG_CURRENT_DESKTOP=sway
 
 # Firefox on wayland
 export MOZ_ENABLE_WAYLAND=1
@@ -105,3 +105,7 @@ function parse_git_branch {
 
 # one line
 PS1="${blu}\W${clr}\$(parse_git_branch) ${grn}${clr} "
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

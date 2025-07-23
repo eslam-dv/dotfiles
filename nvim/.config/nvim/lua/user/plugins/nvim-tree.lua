@@ -3,8 +3,8 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     view = {
-      width = 30,
-      side = "right",
+      width = 25,
+      side = "left",
     },
     renderer = {
       indent_markers = { enable = true }
