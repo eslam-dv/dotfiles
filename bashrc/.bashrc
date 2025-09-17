@@ -46,8 +46,8 @@ alias vrc='cd $MYVIMRC && nvim .'
 alias brc='nvim ~/.bashrc'
 alias rm='rm -i' #-i prompts user before deletion
 alias cp='cp -i' #-i prompts user before overwriting
-alias ls='exa --icons'
-# alias ls='ls --color'
+# alias ls='exa --icons'
+alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -96,7 +96,7 @@ function parse_git_dirty {
 function parse_git_branch {
   BRANCH=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/")
   if [[ -n "$BRANCH" ]]; then
-    printf " on ${red}%s%s${clr}" "$BRANCH" "$(parse_git_dirty)"
+    printf " on %s%s" "$BRANCH" "$(parse_git_dirty)"
   fi
 }
 
@@ -104,8 +104,16 @@ function parse_git_branch {
 # PS1="${blu}\w\$(parse_git_branch)\n${grn}${clr} "
 
 # one line
-PS1="${blu}\W${clr}\$(parse_git_branch) ${grn}${clr} "
+PS1="${blu}\W${clr}${red}\$(parse_git_branch)${clr} ${grn}${clr} "
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/eslam/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

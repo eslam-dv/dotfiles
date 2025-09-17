@@ -1,12 +1,14 @@
 return {
   "nvimtools/none-ls.nvim",
-  config = function ()
+  config = function()
     local null_ls = require("null-ls");
     local formatting = null_ls.builtins.formatting;
 
     null_ls.setup({
       sources = {
-        formatting.prettierd,
+        formatting.prettierd.with({
+          extra_filetypes = { "javascriptreact", "typescriptreact" },
+        }),
         formatting.stylua,
       }
     })
