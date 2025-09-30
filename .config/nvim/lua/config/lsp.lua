@@ -1,5 +1,7 @@
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("html")
+vim.lsp.enable("cssls")
 
 -- Remove Global Default Key mapping
 vim.keymap.del("n", "grn")
