@@ -10,6 +10,9 @@ return {
 				side = "right",
 				width = 25,
 			},
+      git = {
+        ignore = false
+      }
 		})
 
 		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>", { silent = true, noremap = true })

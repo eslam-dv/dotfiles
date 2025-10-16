@@ -5,6 +5,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias cl='clear'
+alias vc='nvim ~/.config/nvim'
 
 # completions
 autoload -U compinit; compinit

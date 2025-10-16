@@ -19,8 +19,8 @@ map("n", "<C-s>", ":w<cr>", opts)
 map("n", "<C-a>", "ggVG", opts)
 
 -- Buffer navigation
-map("n", "H", ":bnext<cr>", opts)
-map("n", "L", ":bprev<cr>", opts)
+map("n", "L", ":bnext<cr>", opts)
+map("n", "H", ":bprev<cr>", opts)
 map("n", "Q", ":bdelete<cr>", opts)
 
 -- Better window navigation
@@ -40,6 +40,10 @@ map("n", "<C-Down>", ":resize +2<cr>", opts)
 map("n", "<C-Left>", ":vertical resize -2<cr>", opts)
 map("n", "<C-Right>", ":vertical resize +2<cr>", opts)
 
+-- Move text up and down
+map("n", "<A-j>", ":m .+1<CR>==", opts)
+map("n", "<A-k>", ":m .-2<CR>==", opts)
+
 -- Diagnostic
 map("n", "gl", vim.diagnostic.open_float, opts)
 map("n", "]d", vim.diagnostic.goto_next, opts)
@@ -50,3 +54,10 @@ map("n", "[d", vim.diagnostic.goto_prev, opts)
 -----------------
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
+
+-- Move text up and down
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+
+-- Better Paste
+map("v", "p", '"_dP', opts)

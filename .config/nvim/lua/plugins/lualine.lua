@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-mini/mini.icons" },
 	config = function()
 		local diagnostics = {
@@ -7,7 +8,7 @@ return {
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn" },
 			symbols = { error = " ", warn = " " },
-			colored = true,
+			colored = false,
 			update_in_insert = false,
 			always_visible = true,
 		}
@@ -32,8 +33,8 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff" },
-				lualine_c = { diagnostics, "filename" },
+				lualine_b = { diagnostics },
+				lualine_c = { "branch", "diff", "filename" },
 				lualine_x = { spaces, "encoding", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { location },
