@@ -1,9 +1,13 @@
 return {
-	"folke/tokyonight.nvim",
-	lazy = false,
+	"olimorris/onedarkpro.nvim",
 	priority = 1000,
 	config = function()
-		require("tokyonight").setup({})
-		vim.cmd([[colorscheme tokyonight-night]])
+		require("onedarkpro").setup({
+			options = {
+				cursorline = true,
+				transparency = true,
+			},
+		})
+		vim.cmd("colorscheme onedark_dark")
 	end,
 }

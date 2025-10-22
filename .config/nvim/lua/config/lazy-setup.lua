@@ -20,7 +20,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "tokyonight-night" } },
+	install = { colorscheme = { "onedark" } },
 	checker = { enabled = true, notify = false },
 	change_detection = { notify = false },
 })

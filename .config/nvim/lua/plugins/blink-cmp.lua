@@ -13,6 +13,9 @@ return {
 				["<C-j>"] = { "select_next", "fallback" },
 				["<C-n>"] = { "snippet_forward", "fallback" },
 				["<C-p>"] = { "snippet_backward", "fallback" },
+				-- unmap Tab and S-Tab
+				["<Tab>"] = false,
+				["<S-Tab>"] = false,
 			},
 			completion = {
 				documentation = { auto_show = true },
