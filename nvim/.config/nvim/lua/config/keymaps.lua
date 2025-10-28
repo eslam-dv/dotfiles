@@ -21,7 +21,7 @@ map("n", "<C-a>", "ggVG", opts)
 -- Buffer navigation
 map("n", "L", ":bnext<cr>", opts)
 map("n", "H", ":bprev<cr>", opts)
-map("n", "Q", ":bdelete<cr>", opts)
+map("n", "Q", ":bdelete!<cr>", opts)
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", opts)

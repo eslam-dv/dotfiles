@@ -1,0 +1,121 @@
+# Variables #
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $terminal wezterm
+set $files thunar
+set $browser firefox-esr
+set $menu wmenu-run
+
+# Autostart #
+exec waybar &
+exec swaybg -i ~/Pictures/Wallpapers/od_autumn.jpg -m fill &
+
+# Options #
+default_border pixel 2
+gaps inner 5
+gaps outer 3
+
+# Keybindings #
+floating_modifier $mod normal
+
+## Apps
+bindsym $mod+Return exec $terminal
+bindsym $mod+b exec $browser
+bindsym $mod+e exec $files
+bindsym $mod+r exec $menu
+
+## Session
+bindsym $mod+q kill
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+## Moving around
+# Change focus with mod + vim motions
+bindsym $mod+$left focus left
+bindsym $mod+$right focus right
+bindsym $mod+$up focus up
+bindsym $mod+$down focus down
+
+# Change focus with mod + Arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# Move focused window with mod + Shift + vim motions
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$down move down
+
+# Move moveed window with mod + Shift + Arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+## Workspaces
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+## Media
+bindsym --locked XF86AudioMute exec pamixer -t
+bindsym --locked XF86AudioLowerVolume exec pamixer -d 5
+bindsym --locked XF86AudioRaiseVolume exec pamixer -i 5
+bindsym --locked XF86AudioMicMute exec pamixer --default-source -t
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+## Layout
+# split
+#bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# style
+# bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+
+bindsym $mod+m fullscreen
+bindsym $mod+f floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Input #
+input type:pointer {
+  accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+  pointer_accel 1 # set mouse sensitivity (between -1 and 1)
+}
+
+# Window Rules #
+set	$float floating enable; border pixel 1; shadows enable;
+
+for_window [app_id="pavucontrol"] $float
+for_window [app_id="firefox" title="^Picture-in-Picture$"] $float
+for_window [app_id="nwg-look"] $float

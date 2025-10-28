@@ -1,0 +1,66 @@
+* {
+  font-family: JetBrainsMono Nerd Font Propo, sans-serif;
+  font-size: 14px;
+}
+
+#waybar {
+  background-color: #181a1f;
+  color: #abb2bf;
+}
+
+#workspaces {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: #282c34;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+  background-color: #8fc6f4;
+  color: #000000;
+}
+
+#clock,
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#temperature,
+#language,
+#tray {
+  padding: 0 10px;
+  background-color: #282c34;
+}
+
+#clock {
+  color: #56b6c2;
+}
+
+#idle_inhibitor {
+  color: #d19a66;
+}
+
+#pulseaudio {
+  color: #98c379;
+}
+
+#network {
+  color: #e5c07b;
+}
+
+#cpu {
+  color: #f38897;
+}
+
+#memory {
+  color: #e86671;
+}
+
+#language {
+  color: #c678dd;
+}

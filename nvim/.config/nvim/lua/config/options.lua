@@ -34,4 +34,4 @@ opt.smartcase = true
 opt.undofile = true
 
 -- Border for all floating windows
-opt.winborder = "rounded"
+-- opt.winborder = "rounded"
