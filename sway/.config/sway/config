@@ -9,14 +9,14 @@ set $right l
 set $terminal wezterm
 set $files thunar
 set $browser firefox-esr
-set $menu wmenu-run
+set $menu rofi -show drun
 
 # Autostart #
-exec waybar &
-exec swaybg -i ~/Pictures/Wallpapers/od_autumn.jpg -m fill &
+exec swaybg -i ~/Pictures/Wallpapers/od_autumn.jpg -m fill
+exec swayidle -w timeout 300 'gtklock'
 
 # Options #
-default_border pixel 2
+default_border pixel 3
 gaps inner 5
 gaps outer 3
 
@@ -28,11 +28,15 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $browser
 bindsym $mod+e exec $files
 bindsym $mod+r exec $menu
+bindsym $mod+w exec killall -SIGUSR2 waybar
+bindsym $mod+Period exec rofi -show emoji
 
 ## Session
 bindsym $mod+q kill
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+x exec gtklock
+bindsym $mod+p exec wlogout
 
 ## Moving around
 # Change focus with mod + vim motions
@@ -107,7 +111,18 @@ bindsym $mod+m fullscreen
 bindsym $mod+f floating toggle
 bindsym $mod+space focus mode_toggle
 
+# Bar #
+bar {
+  swaybar_command waybar
+}
+
 # Input #
+input type:keyboard {
+    xkb_layout us,ara
+    xkb_options grp:win_space_toggle
+    xkb_numlock on
+}
+
 input type:pointer {
   accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
   pointer_accel 1 # set mouse sensitivity (between -1 and 1)
@@ -115,7 +130,16 @@ input type:pointer {
 
 # Window Rules #
 set	$float floating enable; border pixel 1; shadows enable;
+set $game inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable
 
-for_window [app_id="pavucontrol"] $float
-for_window [app_id="firefox" title="^Picture-in-Picture$"] $float
-for_window [app_id="nwg-look"] $float
+for_window {
+  [app_id="pavucontrol"] $float
+  [app_id="firefox" title="^Picture-in-Picture$"] $float
+  [app_id="nwg-look"] $float
+  [app_id="xarchiver"] $float
+  [app_id="galculator"] $float
+  [app_id="eog"] $float
+  [app_id="thunar" title="File Operation Progress"] $float
+  [app_id="thunar" title="Confirm to replace files"] $float
+  [class="vlc"] $float
+}
