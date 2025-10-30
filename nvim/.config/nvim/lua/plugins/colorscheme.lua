@@ -4,7 +4,7 @@ return {
 	config = function()
 		require("onedark").setup({
 			style = "darker",
-			transparent = true,
+			transparent = false,
 			-- Change code style ---
 			-- Options are italic, bold, underline, none
 			-- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'

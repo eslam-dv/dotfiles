@@ -12,7 +12,7 @@ shopt -s histappend
 shopt -s checkwinsize
 
 alias ls='ls --color'
-alias vc='cd .config/nvim && nvim .'
+alias vc='cd ~/.config/nvim && nvim .'
 
 # Color definitions
 RED="\[\e[1;31m\]"
