@@ -1,0 +1,92 @@
+configuration {
+  modi: "drun,run,window,emoji";
+  font: "JetBrainsMono Nerd Font Propo 12";
+  show-icons: true;
+  display-drun: " :";
+  display-run: " :";
+  display-window: " :";
+  drun-display-format: "{name}";
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #2E3440;
+  bg-alt: #3B4252;
+
+  fg: #ECEFF4;
+  fg-alt: #D8DEE9;
+
+  bl: #8fc6f4;
+  gr: #a9d89d;
+  pr: #e089e7;
+
+  background-color: @bg;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  border-radius: 10;
+  padding: 5;
+  border: 1px;
+  border-color: @gr; 
+}
+
+mainbox {
+  border-radius: 10;
+  spacing: 10;
+  padding: 5;
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+inputbar {
+  children: [prompt, entry];
+  border-radius: 10;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 6;
+  text-color: @fg;
+}
+
+prompt {
+  background-color: @bg-alt;
+  color: @gr;
+  padding: 6 0 0 6;
+}
+
+listview {
+  background-color: @bg;
+  columns: 2; 
+  lines: 7;
+}
+
+element {
+  margin: 5;
+  padding: 10 6;
+  border-radius: 10;
+  spacing: 5;
+  text-color: @fg-alt;
+  background-color: @bg-alt;
+}
+
+element selected {
+  text-color: @bg; 
+  background-color: @bl;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+}
+
+element-icon {
+  size: 25;
+  background-color: transparent;
+}
