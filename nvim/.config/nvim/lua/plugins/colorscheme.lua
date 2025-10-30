@@ -1,13 +1,22 @@
 return {
-	"olimorris/onedarkpro.nvim",
-	priority = 1000,
+	"navarasu/onedark.nvim",
+	priority = 1000, -- make sure to load this before all the other start plugins
 	config = function()
-		require("onedarkpro").setup({
-			options = {
-				cursorline = true,
-				transparency = true,
+		require("onedark").setup({
+			style = "darker",
+			transparent = true,
+			-- Change code style ---
+			-- Options are italic, bold, underline, none
+			-- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+			code_style = {
+				comments = "italic",
+				keywords = "none",
+				functions = "none",
+				strings = "none",
+				variables = "none",
 			},
 		})
-		vim.cmd("colorscheme onedark_dark")
+		-- Enable theme
+		require("onedark").load()
 	end,
 }

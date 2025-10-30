@@ -3,12 +3,30 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-mini/mini.icons" },
 	config = function()
+		local hide_in_width = function()
+			return vim.fn.winwidth(0) > 80
+		end
+
+		local mode = {
+			"mode",
+			fmt = function(str)
+				return string.upper(string.sub(str, 1, 1))
+			end,
+		}
+
+		local diff = {
+			"diff",
+			colored = true,
+			symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+			cond = hide_in_width,
+		}
+
 		local diagnostics = {
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn" },
 			symbols = { error = " ", warn = " " },
-			colored = false,
+			colored = true,
 			update_in_insert = false,
 			always_visible = true,
 		}
@@ -32,11 +50,11 @@ return {
 				always_divide_middle = true,
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = { mode },
 				lualine_b = { diagnostics },
-				lualine_c = { "branch", "diff", "filename" },
-				lualine_x = { spaces, "encoding", "filetype" },
-				lualine_y = { "progress" },
+				lualine_c = { "branch", diff },
+				lualine_x = { spaces, "encoding" },
+				lualine_y = { "filetype" },
 				lualine_z = { location },
 			},
 		})

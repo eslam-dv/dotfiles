@@ -17,6 +17,7 @@ map("i", "<C-a>", "<esc>ggVG", opts)
 -----------------
 map("n", "<C-s>", ":w<cr>", opts)
 map("n", "<C-a>", "ggVG", opts)
+map("n", "<leader>h", ":nohl<cr>", opts)
 
 -- Buffer navigation
 map("n", "L", ":bnext<cr>", opts)
@@ -52,6 +53,7 @@ map("n", "[d", vim.diagnostic.goto_prev, opts)
 -----------------
 -- Visual Mode --
 -----------------
+-- Better indenting
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
@@ -61,3 +63,13 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- Better Paste
 map("v", "p", '"_dP', opts)
+
+-----------------
+-- Terminal Mode --
+-----------------
+map("t", "<Esc>", "<C-\\><C-n>", opts)
+map("t", "jk", "<C-\\><C-n>", opts)
+map("t", "<C-h>", "<C-\\><C-n><C-w>h", opts)
+map("t", "<C-j>", "<C-\\><C-n><C-w>j", opts)
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", opts)
+map("t", "<C-l>", "<C-\\><C-n><C-w>l", opts)

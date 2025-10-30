@@ -20,6 +20,12 @@ opt.cursorline = true
 opt.wrap = false
 opt.termguicolors = true
 opt.signcolumn = "yes"
+opt.showmode = false
+
+-- Folding
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevelstart = 99
 
 -- Windows splitting
 opt.splitbelow = true
