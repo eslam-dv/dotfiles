@@ -1,91 +1,103 @@
-// -*- mode: jsonc -*-
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": [
-        "sway/workspaces",
-    ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
-        "idle_inhibitor",
-        "sway/language",
-        "pulseaudio",
-        "network",
-        "cpu",
-        "memory",
-        "tray"
-    ],
-    // Modules configuration
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}"
+  "layer": "top",  "position": "top",
+  "height": 20,
+  "spacing": 4,
+  "modules-left": ["clock", "cpu", "memory", "temperature"],
+  "modules-center": ["sway/workspaces"],
+  "modules-right": [
+    "idle_inhibitor",
+    "sway/language",
+    "pulseaudio#output",
+    "pulseaudio#input",
+    "network",
+    "tray",
+    "custom/power"
+  ],
+  // Modules configuration
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{name}"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    "icon-size": 10,
+    "spacing": 4
+  },
+  "clock": {
+    "timezone": "Africa/Cairo",
+    "format": "{:%d-%m-%Y | %I:%M %p}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format": {
+        "months": "<span color='#61afef'><b>{}</b></span>",
+        "days": "<span color='#abb2bf'><b>{}</b></span>",
+        "weekdays": "<span color='#e5c07b'><b>{}</b></span>",
+        "today": "<span color='#ef596f'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{used:0.1f}G ",
+    "tooltip": false
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+  "network": {
+    // "interface": "wlp2s0",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰌙",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "pulseaudio#input": {
+    "format-source": "",
+    "format-source-muted": "",
+    "format": "{format_source}",
+    "on-click": "pamixer --default-source -t",
+    "on-click-middle": "pavucontrol"
+  },
+  "pulseaudio#output": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        "icon-size": 15,
-        "spacing": 4
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
-    "clock": {
-        "timezone": "Africa/Cairo",
-        "format": "{:%d-%m-%Y | %I:%M %p}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{used:0.1f}G "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format": "󰲝",
-        "format-disconnected": "󰲜"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "󰟎 {icon} {format_source}",
-        "format-muted": "󰝟 {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-   }
+    "max-volume": 100,
+    "scroll-step": 2,
+    "smooth-scrolling-threshold": 1,
+    "on-click": "pamixer -t",
+    "on-click-middle": "pavucontrol"
+  },
+  "custom/power": {
+    "format" : "⏻",
+		"tooltip": false,
+    "on-click": "wlogout",
   }
 }

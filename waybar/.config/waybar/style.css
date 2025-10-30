@@ -1,5 +1,5 @@
 * {
-  font-family: JetBrainsMono Nerd Font Propo, sans-serif;
+  font-family: "JetBrainsMono Nerd Font Propo";
   font-size: 14px;
 }
 
@@ -32,7 +32,8 @@
 #memory,
 #temperature,
 #language,
-#tray {
+#tray,
+#custom-power {
   padding: 0 10px;
   background-color: #282c34;
 }
@@ -45,22 +46,22 @@
   color: #d19a66;
 }
 
-#pulseaudio {
+#pulseaudio,
+#memory {
   color: #98c379;
 }
 
-#network {
+#temperature.critical,
+#custom-power {
+  color: #ef596f;
+}
+
+#network,
+#cpu {
   color: #e5c07b;
 }
 
-#cpu {
-  color: #f38897;
-}
-
-#memory {
-  color: #e86671;
-}
-
-#language {
+#language,
+#temperature {
   color: #c678dd;
 }
