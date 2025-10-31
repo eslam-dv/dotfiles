@@ -6,13 +6,15 @@ config.font_size = 12
 config.font = wezterm.font({ family = "JetBrainsMono Nerd Font Propo", weight = "Regular" })
 config.force_reverse_video_cursor = true
 config.tab_bar_at_bottom = true
-config.window_background_opacity = 1
+config.window_background_opacity = 0.8
+
 config.window_padding = {
   left = 2,
   right = 2,
   top = 0,
   bottom = 0,
 }
+
 config.colors = {
 	background = "#000000",
 	foreground = "#abb2bf",
