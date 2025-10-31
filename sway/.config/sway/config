@@ -6,7 +6,7 @@ set $down j
 set $up k
 set $right l
 
-set $terminal wezterm
+set $terminal kitty
 set $files thunar
 set $browser firefox-esr
 set $menu rofi -show drun
@@ -134,11 +134,12 @@ set $game inhibit_idle focus; floating enable; border none; fullscreen enable; s
 
 for_window {
   [app_id="pavucontrol"] $float
-  [app_id="firefox" title="^Picture-in-Picture$"] $float
   [app_id="nwg-look"] $float
   [app_id="xarchiver"] $float
   [app_id="galculator"] $float
   [app_id="eog"] $float
+  [app_id="firefox" title="^Picture-in-Picture$"] $float
+  [app_id="firefox" title="Library"] $ flaot
   [app_id="thunar" title="File Operation Progress"] $float
   [app_id="thunar" title="Confirm to replace files"] $float
   [class="vlc"] $float

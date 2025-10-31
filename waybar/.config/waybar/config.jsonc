@@ -1,5 +1,6 @@
 {
-  "layer": "top",  "position": "top",
+  "layer": "top",  
+  "position": "top",
   "height": 20,
   "spacing": 4,
   "modules-left": ["clock", "cpu", "memory", "temperature"],
