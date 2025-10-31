@@ -1,43 +1,53 @@
+-------------
+-- Optoins --
+-------------
 local opt = vim.opt
-
-opt.clipboard:append("unnamedplus")
-opt.completeopt = { "menu", "menuone", "noselect" }
-opt.mouse = "a"
-
--- Tab
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.smarttab = true
-opt.expandtab = true
-
--- Line numbers
+-- Basic settings
 opt.number = true
 opt.relativenumber = true
-
--- UI config
 opt.cursorline = true
 opt.wrap = false
-opt.termguicolors = true
-opt.signcolumn = "yes"
-opt.showmode = false
-
--- Folding
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevelstart = 99
-
--- Windows splitting
+opt.scrolloff = 5
+opt.sidescrolloff = 5
 opt.splitbelow = true
 opt.splitright = true
 
--- Searching
-opt.incsearch = true
+-- Indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
+opt.smartindent = true
+opt.autoindent = true
+
+-- Search settings
 opt.ignorecase = true
 opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
 
--- Save undo history
+-- Visual settings
+opt.termguicolors = true
+opt.signcolumn = "yes"
+opt.showmode = false
+opt.cmdheight = 1
+opt.completeopt = "menuone,noinsert,noselect"
+
+-- File handling
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
 opt.undofile = true
+opt.undodir = vim.fn.expand("~/.vim/undodir")
+opt.updatetime = 300
+opt.timeoutlen = 500
+opt.autoread = true
+opt.autowrite = false
 
--- Border for all floating windows
--- opt.winborder = "rounded"
+-- Behavior settings
+opt.errorbells = false
+opt.backspace = "indent,eol,start"
+opt.iskeyword:append("-")
+opt.path:append("**")
+opt.mouse = "a"
+opt.clipboard:append("unnamedplus")

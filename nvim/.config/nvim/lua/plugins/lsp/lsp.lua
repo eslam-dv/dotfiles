@@ -1,19 +1,3 @@
-vim.lsp.config("*", {
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
-})
-
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("ts_ls")
-vim.lsp.enable("html")
-vim.lsp.enable("cssls")
-
--- Remove Global Default Key mapping
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "gO")
-
 -- Create keymapping
 -- LspAttach: After an LSP Client performs "initialize" and attaches to a buffer.
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -31,9 +15,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gs", lsp.buf.signature_help, bufopts)
 		map("n", "<leader>lr", lsp.buf.rename, bufopts)
 		map("n", "<leader>la", lsp.buf.code_action, bufopts)
-		-- map("n", "<leader>lf", function()
-		--   vim.lsp.buf.format({ async = true })
-		-- end, bufopts)
+		map("n", "<leader>lf", function()
+			vim.lsp.buf.format({ async = true })
+		end, bufopts)
 	end,
 })
 
