@@ -1,9 +1,9 @@
 configuration {
   modi: "drun,run,window,emoji";
-  font: "JetBrainsMono Nerd Font Propo 12";
+  font: "JetBrains Mono";
   show-icons: true;
-  display-drun: " :";
-  display-run: " :";
+  display-drun: " :";
+  display-run: " :";
   display-window: " :";
   drun-display-format: "{name}";
 }
@@ -11,15 +11,13 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg: #2E3440;
-  bg-alt: #3B4252;
+  bg: #1a1b26;
+  bg-alt: #292e42;
 
-  fg: #ECEFF4;
-  fg-alt: #D8DEE9;
+  fg: #c0caf5;
+  fg-alt: #a9b1d6;
 
-  bl: #8fc6f4;
-  gr: #a9d89d;
-  pr: #e089e7;
+  bl: #7aa2f7;
 
   background-color: @bg;
 
@@ -33,7 +31,7 @@ window {
   border-radius: 10;
   padding: 5;
   border: 1px;
-  border-color: @gr; 
+  border-color: @bl; 
 }
 
 mainbox {
@@ -57,7 +55,7 @@ entry {
 
 prompt {
   background-color: @bg-alt;
-  color: @gr;
+  color: @bl;
   padding: 6 0 0 6;
 }
 
