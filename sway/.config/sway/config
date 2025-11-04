@@ -10,15 +10,23 @@ set $terminal kitty
 set $files thunar
 set $browser firefox-esr
 set $menu rofi -show drun
+set $lock gtklock
 
 # Autostart #
 exec swaybg -i ~/Pictures/Wallpapers/od_autumn.jpg -m fill
-exec swayidle -w timeout 300 'gtklock'
+exec swayidle -w \
+  timeout 300 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  timeout 900 'systemctl suspend' \
+  resume $lock \
+  after-resume 'swaymsg "output * dpms on"'
 
 # Options #
-default_border pixel 3
+default_border pixel 2
+hide_edge_borders smart
+
 gaps inner 5
-gaps outer 3
+gaps outer -5
 
 # Keybindings #
 floating_modifier $mod normal
@@ -125,7 +133,7 @@ input type:keyboard {
 
 input type:pointer {
   accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-  pointer_accel 1 # set mouse sensitivity (between -1 and 1)
+  pointer_accel 0 # set mouse sensitivity (between -1 and 1)
 }
 
 # Window Rules #
@@ -138,8 +146,8 @@ for_window {
   [app_id="xarchiver"] $float
   [app_id="galculator"] $float
   [app_id="eog"] $float
-  [app_id="firefox" title="^Picture-in-Picture$"] $float
-  [app_id="firefox" title="Library"] $ flaot
+  [app_id="firefox-esr" title="^Picture-in-Picture$"] $float
+  [app_id="firefox-esr" title="Library"] $float
   [app_id="thunar" title="File Operation Progress"] $float
   [app_id="thunar" title="Confirm to replace files"] $float
   [class="vlc"] $float
