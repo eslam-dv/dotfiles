@@ -32,6 +32,12 @@ o.swapfile = false
 o.undofile = true
 o.autoread = true
 
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
+
 vim.opt.clipboard:append("unnamedplus")
 
 --------------
@@ -118,7 +124,7 @@ map("v", "<", "<gv", "Indent left and reselect")
 map("n", "<leader>e", ":Ex<cr>", "Open file explorer")
 
 -- Diagnostic
-map("n", "gl", ": lua vim.diagnostic.open_float()<cr>", "Open diagnostic float")
+map("n", "gl", ":lua vim.diagnostic.open_float()<cr>", "Open diagnostic float")
 
 -- Mini.pick
 map("n", "<leader>ff", ":Pick files<cr>", "Search files")
@@ -144,6 +150,12 @@ vim.pack.add({
 	"https://github.com/windwp/nvim-ts-autotag", -- Auto close html tags
 	"https://github.com/akinsho/toggleterm.nvim", -- Terminal
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" }, -- Syntax highlight
+	"https://github.com/lewis6991/gitsigns.nvim", -- Git signs
+	"https://github.com/nvimdev/indentmini.nvim", -- Indentline
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim", -- render markdown
+	-- Folding
+	"https://github.com/kevinhwang91/nvim-ufo",
+	"https://github.com/kevinhwang91/promise-async",
 	-- LSP
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/mason-org/mason.nvim",
@@ -152,8 +164,6 @@ vim.pack.add({
 	-- Formatting & Linting
 	"https://github.com/nvimtools/none-ls.nvim",
 	"https://github.com/nvimtools/none-ls-extras.nvim",
-	"https://github.com/nvimdev/indentmini.nvim", -- Indentline
-	"https://github.com/OXY2DEV/markview.nvim", -- Render markdown
 	-- AI
 	"https://github.com/olimorris/codecompanion.nvim", -- Chat
 	"https://github.com/Exafunction/windsurf.vim", -- Copletion
@@ -209,15 +219,20 @@ blink.setup({
 
 	sources = {
 		-- providers = { codeium = { name = "Codeium", module = "codeium.blink", async = true, score_offset = -9999 } },
-		default = { "lsp", "buffer", "path", "snippets" },
+		default = { "buffer", "path", "lsp", "snippets" },
 	},
 
 	signature = { enabled = true },
 })
 
 -- Setup LSP capabilities
+local capabilities = blink.get_lsp_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
 vim.lsp.config("*", {
-	capabilities = blink.get_lsp_capabilities(),
+	capabilities = capabilities,
 })
 
 require("colorizer").setup({
@@ -300,13 +315,13 @@ require("codecompanion").setup({
 	},
 })
 
-require("markview").setup({
-	preview = {
-		icon_provider = "mini",
-		filetypes = { "markdown", "codecompanion" },
-		ignore_buftypes = {},
-	},
+require("render-markdown").setup({
+	file_types = { "markdown", "codecompanion" },
 })
+
+require("gitsigns").setup({})
+
+require("ufo").setup()
 
 -- Lualine
 local hide_in_width = function()
@@ -348,7 +363,7 @@ local diagnostics = {
 	colored = false,
 	update_in_insert = false,
 	always_visible = true,
-  cond = hide_in_width,
+	cond = hide_in_width,
 }
 
 local diff = {
@@ -358,12 +373,16 @@ local diff = {
 	cond = hide_in_width,
 }
 
+local spaces = function()
+	return "spaces: " .. vim.bo.shiftwidth
+end
+
 require("lualine").setup({
 	options = {
 		theme = "auto",
 		component_separators = "",
 		section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 	},
 	sections = {
 		lualine_a = { { mode, separator = { left = "" }, right_padding = 2 } },
@@ -373,7 +392,7 @@ require("lualine").setup({
 			-- '%=', --[[ add your center components here in place of this comment ]]
 		},
 		lualine_x = { diff },
-		lualine_y = { "filetype", "progress" },
+		lualine_y = { spaces, "filetype" },
 		lualine_z = {
 			{ "location", separator = { right = "" }, left_padding = 2 },
 		},

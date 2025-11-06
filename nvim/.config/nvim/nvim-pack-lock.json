@@ -8,6 +8,7 @@
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "friendly-snippets": [],
+    "gitsigns.nvim": [],
     "indentmini.nvim": {
       "rev": "e0f1e38",
       "src": "https://github.com/nvimdev/indentmini.nvim"
@@ -15,10 +16,6 @@
     "lualine.nvim": {
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
-    },
-    "markview.nvim": {
-      "rev": "b41c643",
-      "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason-lspconfig.nvim": [],
     "mason-tool-installer.nvim": [],
@@ -38,7 +35,19 @@
       "version": "'master'"
     },
     "nvim-ts-autotag": [],
+    "nvim-ufo": {
+      "rev": "72d54c3",
+      "src": "https://github.com/kevinhwang91/nvim-ufo"
+    },
     "plenary.nvim": [],
+    "promise-async": {
+      "rev": "119e896",
+      "src": "https://github.com/kevinhwang91/promise-async"
+    },
+    "render-markdown.nvim": {
+      "rev": "a1b2bf0",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "toggleterm.nvim": [],
     "tokyonight.nvim": [],
     "windsurf.vim": {
