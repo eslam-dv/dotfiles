@@ -168,6 +168,7 @@ vim.pack.add({
 	"https://github.com/olimorris/codecompanion.nvim", -- Chat
 	"https://github.com/Exafunction/windsurf.vim", -- Copletion
 	"https://github.com/nvim-lualine/lualine.nvim", -- Status line
+  "https://github.com/github/copilot.vim"
 })
 
 require("tokyonight").setup({

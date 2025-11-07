@@ -7,19 +7,20 @@ set $up k
 set $right l
 
 set $terminal kitty
-set $files thunar
+set $files pcmanfm
 set $browser firefox-esr
 set $menu rofi -show drun
 set $lock gtklock
 
 # Autostart #
-exec swaybg -i ~/Pictures/Wallpapers/od_autumn.jpg -m fill
+exec swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n1) -m fill
 exec swayidle -w \
   timeout 300 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
   timeout 900 'systemctl suspend' \
   resume $lock \
   after-resume 'swaymsg "output * dpms on"'
+exec nm-applet
 
 # Options #
 default_border pixel 2
@@ -104,6 +105,8 @@ bindsym --locked XF86AudioMicMute exec pamixer --default-source -t
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10-%
 
 ## Layout
 # split
@@ -136,6 +139,10 @@ input type:pointer {
   pointer_accel 0 # set mouse sensitivity (between -1 and 1)
 }
 
+input type:touchpad {
+  tap enabled
+}
+
 # Window Rules #
 set	$float floating enable; border pixel 1; shadows enable;
 set $game inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable
@@ -151,4 +158,5 @@ for_window {
   [app_id="thunar" title="File Operation Progress"] $float
   [app_id="thunar" title="Confirm to replace files"] $float
   [class="vlc"] $float
+  [app_id="imv"] $float
 }

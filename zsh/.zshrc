@@ -43,11 +43,3 @@ zstyle ':vcs_info:*' stagedstr ' 󰜄'   # For staged '+' (added, not committed)
 zstyle ':vcs_info:git:*' formats ' on %F{red} %b%c%u%f'
 
 PROMPT="%F{cyan}%1~%f\$vcs_info_msg_0_ %F{green}%f "
-
-# pnpm
-export PNPM_HOME="/home/eslam/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

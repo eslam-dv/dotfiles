@@ -10,7 +10,7 @@
     "sway/language",
     "pulseaudio#output",
     "pulseaudio#input",
-    "network",
+    // "network",
     "tray",
     "custom/power"
   ],
@@ -29,7 +29,7 @@
     }
   },
   "tray": {
-    "icon-size": 10,
+    "icon-size": 14,
     "spacing": 4
   },
   "clock": {

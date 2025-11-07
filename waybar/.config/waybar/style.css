@@ -24,7 +24,9 @@
 }
 
 #workspaces button {
-  padding: 0 .4rem;
+  border-radius: 100%;
+  padding: 0 4px;
+  margin: 0 2px;
   background-color: @bg-alt;
   color: @fg-alt;
 }
@@ -46,7 +48,6 @@
 #tray,
 #custom-power {
   padding: 0 .6rem;
-  background-color: @bg-alt;
   border-radius: 3px;
 }
 

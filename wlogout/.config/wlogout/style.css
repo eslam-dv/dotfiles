@@ -6,28 +6,21 @@
 
 window {
   background-color: rgba(26, 27, 38, 0.9);
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 button {
-  border-radius: 20px;
-  border-color: #15161e;
-  margin: 19px;
-  text-decoration-color: #c0caf5;
-  color: #c0caf5;
-  background-color: rgba(122, 162, 247, .2);
-  border-style: solid;
-  border-width: 2px;
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: 25%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  background-color: #282a36;
 }
 
 button:focus,
 button:active,
 button:hover {
   background-color: #7aa2f7;
-  color: #16161e;
   border-color: #ffffff;
   outline-style: none;
 }
