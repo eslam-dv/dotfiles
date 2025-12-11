@@ -1,8 +1,9 @@
 # Exports
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/Applications/JetBrains Rider-2025.3.0.3/bin:$HOME/.local/bin:$PATH"
 export XDG_CURRENT_DESKTOP="Wayland"
 export EDITOR="nvim"
 export TERMINAL="kitty"
+export BROWSER="firefox"
 
 HISTSIZE=1000
 SAVEHIST=2000
@@ -21,10 +22,6 @@ alias la='ls -a'
 alias lla='ls -la'
 alias cl='clear'
 alias vc='nvim ~/.config/nvim'
-
-# History search with arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 # completions
 autoload -U compinit

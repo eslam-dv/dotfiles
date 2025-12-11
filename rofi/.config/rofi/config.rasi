@@ -1,6 +1,6 @@
 configuration {
   modi: "drun,run,window,emoji";
-  font: "JetBrains Mono";
+  font: "JetBrains Mono NL 12";
   show-icons: true;
   display-drun: " :";
   display-run: " :";

@@ -1,17 +1,32 @@
 {
   "plugins": {
-    "blink.cmp": {
-      "rev": "327fff9",
-      "src": "https://github.com/Saghen/blink.cmp",
-      "version": "1.0.0 - 2.0.0"
+    "FixCursorHold.nvim": {
+      "rev": "1900f89",
+      "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
+    },
+    "LuaSnip": {
+      "rev": "3732756",
+      "src": "https://github.com/L3MON4D3/LuaSnip"
+    },
+    "cmp-buffer": {
+      "rev": "b74fab3",
+      "src": "https://github.com/hrsh7th/cmp-buffer"
+    },
+    "cmp-nvim-lsp": {
+      "rev": "bd5a7d6",
+      "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
+    },
+    "cmp-path": {
+      "rev": "c642487",
+      "src": "https://github.com/hrsh7th/cmp-path"
+    },
+    "cmp_luasnip": {
+      "rev": "98d9cb5",
+      "src": "https://github.com/saadparwaiz1/cmp_luasnip"
     },
     "codecompanion.nvim": {
       "rev": "79c6908",
       "src": "https://github.com/olimorris/codecompanion.nvim"
-    },
-    "copilot.vim": {
-      "rev": "da369d9",
-      "src": "https://github.com/github/copilot.vim"
     },
     "friendly-snippets": {
       "rev": "572f566",
@@ -51,6 +66,14 @@
       "src": "https://github.com/nvim-mini/mini.pick",
       "version": "'stable'"
     },
+    "neotest": {
+      "rev": "deadfb1",
+      "src": "https://github.com/nvim-neotest/neotest"
+    },
+    "neotest-dotnet": {
+      "rev": "e27c67a",
+      "src": "https://github.com/Issafalcon/neotest-dotnet"
+    },
     "none-ls-extras.nvim": {
       "rev": "71b5e34",
       "src": "https://github.com/nvimtools/none-ls-extras.nvim"
@@ -63,13 +86,29 @@
       "rev": "7a2c97c",
       "src": "https://github.com/windwp/nvim-autopairs"
     },
+    "nvim-cmp": {
+      "rev": "106c4bc",
+      "src": "https://github.com/hrsh7th/nvim-cmp"
+    },
     "nvim-colorizer.lua": {
       "rev": "81e676d",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
+    "nvim-dap": {
+      "rev": "5860c7c",
+      "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e",
+      "src": "https://github.com/rcarriga/nvim-dap-ui"
+    },
     "nvim-lspconfig": {
       "rev": "2010fc6",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-nio": {
+      "rev": "21f5324",
+      "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
       "rev": "42fc28ba",
@@ -95,6 +134,10 @@
     "render-markdown.nvim": {
       "rev": "a1b2bf0",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "roslyn.nvim": {
+      "rev": "ab60e7e",
+      "src": "https://github.com/seblyng/roslyn.nvim"
     },
     "toggleterm.nvim": {
       "rev": "9a88eae",

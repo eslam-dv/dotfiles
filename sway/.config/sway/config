@@ -8,7 +8,7 @@ set $right l
 
 set $terminal kitty
 set $files pcmanfm
-set $browser firefox-esr
+set $browser firefox
 set $menu rofi -show drun
 set $lock gtklock
 
@@ -23,6 +23,7 @@ exec swayidle -w \
 exec nm-applet
 
 # Options #
+xwayland enable
 default_border pixel 2
 hide_edge_borders smart
 
@@ -46,6 +47,12 @@ bindsym $mod+Shift+r reload
 bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+x exec gtklock
 bindsym $mod+p exec wlogout
+
+## Screenshots
+bindsym Print             exec ~/.config/sway/scripts/screenshot.sh region
+bindsym Shift+Print       exec ~/.config/sway/scripts/screenshot.sh window
+bindsym Ctrl+Print        exec ~/.config/sway/scripts/screenshot.sh output
+bindsym Ctrl+Shift+Print  exec ~/.config/sway/scripts/screenshot.sh all
 
 ## Moving around
 # Change focus with mod + vim motions
@@ -105,8 +112,8 @@ bindsym --locked XF86AudioMicMute exec pamixer --default-source -t
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10-%
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5-%
 
 ## Layout
 # split
@@ -141,6 +148,8 @@ input type:pointer {
 
 input type:touchpad {
   tap enabled
+  drag_lock disable
+  natural_scroll enable
 }
 
 # Window Rules #
@@ -159,4 +168,5 @@ for_window {
   [app_id="thunar" title="Confirm to replace files"] $float
   [class="vlc"] $float
   [app_id="imv"] $float
+  [app_id="mpv"] $float
 }

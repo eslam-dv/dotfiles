@@ -133,17 +133,26 @@ map("n", "<leader>fh", ":Pick help<cr>", "Search help")
 map("n", "<leader>fg", ":Pick grep_live<cr>", "Search pattern")
 
 -- Keybinds for codecompanion
-map("n", "<leader>cc", ":CodeCompanionChat<CR>", "Open code companion")
+map("n", "<leader>cc", ":CodeCompanionChat Toggle<CR>", "Open code companion")
 
+-- Debugger (dap)
+map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
+map("n", "<F6>", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>")
+map("n", "<F9>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
+map("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
+map("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>")
+map("n", "<F8>", "<Cmd>lua require'dap'.step_out()<CR>")
+-- map("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
+map("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
+map("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
+map("n", "<leader>dt", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", "debug nearest test")
 -------------
 -- Plugins --
 -------------
 vim.pack.add({
 	"https://github.com/folke/tokyonight.nvim", -- Theme
 	"https://github.com/windwp/nvim-autopairs", -- Auto close brackets
-	{ src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("1.*") }, -- Completion
 	"https://github.com/nvim-lua/plenary.nvim", -- Dependency
-	"https://github.com/rafamadriz/friendly-snippets", -- Snippets
 	"https://github.com/catgoose/nvim-colorizer.lua", -- Colors
 	{ src = "https://github.com/nvim-mini/mini.icons", version = "stable" }, -- Icons
 	{ src = "https://github.com/nvim-mini/mini.pick", version = "stable" }, -- Fuzzy finder
@@ -153,6 +162,15 @@ vim.pack.add({
 	"https://github.com/lewis6991/gitsigns.nvim", -- Git signs
 	"https://github.com/nvimdev/indentmini.nvim", -- Indentline
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim", -- render markdown
+	"https://github.com/seblyng/roslyn.nvim", -- C# support
+	-- Completion
+	"https://github.com/hrsh7th/nvim-cmp",
+	"https://github.com/hrsh7th/cmp-path",
+	"https://github.com/hrsh7th/cmp-buffer",
+	"https://github.com/hrsh7th/cmp-nvim-lsp",
+	"https://github.com/saadparwaiz1/cmp_luasnip",
+	"https://github.com/L3MON4D3/LuaSnip", -- Luasnip
+	"https://github.com/rafamadriz/friendly-snippets", -- Snippets
 	-- Folding
 	"https://github.com/kevinhwang91/nvim-ufo",
 	"https://github.com/kevinhwang91/promise-async",
@@ -168,70 +186,130 @@ vim.pack.add({
 	"https://github.com/olimorris/codecompanion.nvim", -- Chat
 	"https://github.com/Exafunction/windsurf.vim", -- Copletion
 	"https://github.com/nvim-lualine/lualine.nvim", -- Status line
-  "https://github.com/github/copilot.vim"
+	-- Debugger
+	"https://github.com/mfussenegger/nvim-dap",
+	"https://github.com/rcarriga/nvim-dap-ui",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/nvim-neotest/neotest",
+	"https://github.com/antoinemadec/FixCursorHold.nvim",
+  "https://github.com/Issafalcon/neotest-dotnet",
 })
 
 require("tokyonight").setup({
-	transparent = true,
+	transparent = false,
 	-- Background styles. Can be "dark", "transparent" or "normal"
-	sidebars = "transparent",
-	floats = "transparent",
+	sidebars = "dark",
+	floats = "dark",
 })
 
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("tokyonight-moon")
 
 require("nvim-autopairs").setup({
 	check_ts = true,
 })
 
-local blink = require("blink.cmp")
-blink.setup({
-	fuzzy = { implementation = "prefer_rust_with_warning" },
-	keymap = {
-		preset = "enter",
-		["<C-space>"] = {},
-		["<Tab>"] = {},
-		["<S-Tab>"] = {},
-		["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
-		["<C-k>"] = { "select_prev", "fallback" },
-		["<C-j>"] = { "select_next", "fallback" },
-		["<C-b>"] = { "scroll_documentation_down", "fallback" },
-		["<C-f>"] = { "scroll_documentation_up", "fallback" },
-		["<C-n>"] = { "snippet_forward", "fallback" },
-		["<C-p>"] = { "snippet_backward", "fallback" },
-		-- ["<C-e>"] = { "hide" },
-	},
-
-	appearance = {
-		use_nvim_cmp_as_default = true,
-		nerd_font_variant = "mono",
-	},
-
-	completion = {
-		list = { selection = { preselect = false } },
-		documentation = {
-			auto_show = true,
-			auto_show_delay_ms = 200,
-		},
-		menu = { draw = { columns = { { "kind_icon", "label", gap = 1 }, { "source_name" } } } },
-	},
-
-	cmdline = { enabled = false },
-
-	sources = {
-		-- providers = { codeium = { name = "Codeium", module = "codeium.blink", async = true, score_offset = -9999 } },
-		default = { "buffer", "path", "lsp", "snippets" },
-	},
-
-	signature = { enabled = true },
-})
-
--- Setup LSP capabilities
-local capabilities = blink.get_lsp_capabilities()
-capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
+local kind_icons = {
+	Text = "󰉿",
+	Method = "󰆧",
+	Function = "󰊕",
+	Constructor = "",
+	Field = " ",
+	Variable = "󰀫",
+	Class = "󰠱",
+	Interface = "",
+	Module = "",
+	Property = "󰜢",
+	Unit = "󰑭",
+	Value = "󰎠",
+	Enum = "",
+	Keyword = "󰌋",
+	Snippet = "",
+	Color = "󰏘",
+	File = "󰈙",
+	Reference = "",
+	Folder = "󰉋",
+	EnumMember = "",
+	Constant = "󰏿",
+	Struct = "",
+	Event = "",
+	Operator = "󰆕",
+	TypeParameter = " ",
+	Misc = " ",
 }
+
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+cmp.setup({
+	snippet = {
+		expand = function(arg)
+			luasnip.lsp_expand(arg.body)
+		end,
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<CR>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if luasnip.expandable() then
+					luasnip.expand()
+				else
+					cmp.confirm({ select = false })
+				end
+			else
+				fallback()
+			end
+		end),
+		["<C-n>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<C-p>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	}),
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
+	},
+	formatting = {
+		fields = { "kind", "abbr", "menu" },
+		format = function(entry, vim_item)
+			-- Kind icons
+			vim_item.kind = kind_icons[vim_item.kind]
+			-- Source
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[LaTeX]",
+			})[entry.source.name]
+			return vim_item
+		end,
+	},
+})
+-- Setup LSP capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.lsp.config("*", {
 	capabilities = capabilities,
 })
@@ -286,6 +364,10 @@ require("mason").setup({
 			package_uninstalled = "✗",
 		},
 	},
+	registries = {
+		"github:mason-org/mason-registry",
+		"github:Crashdummyy/mason-registry",
+	},
 })
 
 require("mason-lspconfig").setup({
@@ -294,7 +376,7 @@ require("mason-lspconfig").setup({
 })
 
 require("mason-tool-installer").setup({
-	ensure_installed = { "prettierd", "stylua", "eslint_d" },
+	ensure_installed = { "prettierd", "stylua", "eslint_d", "csharpier", "netcoredbg" },
 })
 
 local none_ls = require("null-ls")
@@ -304,6 +386,7 @@ none_ls.setup({
 	sources = {
 		formatter.prettierd,
 		formatter.stylua,
+		formatter.csharpier,
 		require("none-ls.diagnostics.eslint_d"),
 	},
 })
@@ -446,6 +529,71 @@ vim.diagnostic.config({
 	virtual_text = false,
 	update_in_insert = false,
 	severity_sort = true,
+})
+
+local dap = require("dap")
+local dapui = require("dapui")
+local mason_path = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg"
+local netcoredbg_adapter = {
+	type = "executable",
+	command = mason_path,
+	args = { "--interpreter=vscode" },
+}
+
+dap.adapters.netcoredbg = netcoredbg_adapter -- needed for normal debugging
+dap.adapters.coreclr = netcoredbg_adapter -- needed for unit test debugging
+
+dap.configurations.cs = {
+	{
+		type = "coreclr",
+		name = "launch - netcoredbg",
+		request = "launch",
+		program = function()
+			-- return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/src/", "file")
+			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/net9.0/", "file")
+		end,
+
+		-- justMyCode = false,
+		-- stopAtEntry = false,
+		-- -- program = function()
+		-- --   -- todo: request input from ui
+		-- --   return "/path/to/your.dll"
+		-- -- end,
+		-- env = {
+		--   ASPNETCORE_ENVIRONMENT = function()
+		--     -- todo: request input from ui
+		--     return "Development"
+		--   end,
+		--   ASPNETCORE_URLS = function()
+		--     -- todo: request input from ui
+		--     return "http://localhost:5050"
+		--   end,
+		-- },
+		-- cwd = function()
+		--   -- todo: request input from ui
+		--   return vim.fn.getcwd()
+		-- end,
+	},
+}
+
+--- open ui immediately when debugging starts
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+	dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+	dapui.close()
+end
+
+-- default configuration
+dapui.setup()
+
+require("neotest").setup({
+	adapters = {
+		require("neotest-dotnet"),
+	},
 })
 
 ------------------
