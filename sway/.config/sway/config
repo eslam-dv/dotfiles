@@ -21,6 +21,7 @@ exec swayidle -w \
   resume $lock \
   after-resume 'swaymsg "output * dpms on"'
 exec nm-applet
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Options #
 xwayland enable
@@ -164,8 +165,7 @@ for_window {
   [app_id="eog"] $float
   [app_id="firefox-esr" title="^Picture-in-Picture$"] $float
   [app_id="firefox-esr" title="Library"] $float
-  [app_id="thunar" title="File Operation Progress"] $float
-  [app_id="thunar" title="Confirm to replace files"] $float
+  [app_id="pcmanfm" title="Removable medium is inserted"] $float
   [class="vlc"] $float
   [app_id="imv"] $float
   [app_id="mpv"] $float
