@@ -24,7 +24,9 @@
 }
 
 #workspaces button {
-  padding: 0 .4rem;
+  border-radius: 100%;
+  padding: 0 2px;
+  margin: 0 2px;
   background-color: @bg-alt;
   color: @fg-alt;
 }
@@ -35,6 +37,8 @@
   color: @bg;
 }
 
+#battery,
+#backlight,
 #clock,
 #idle_inhibitor,
 #pulseaudio,
@@ -46,10 +50,10 @@
 #tray,
 #custom-power {
   padding: 0 .6rem;
-  background-color: @bg-alt;
   border-radius: 3px;
 }
 
+#idle_inhibitor,
 #clock {
   color: @cyan;
 }
@@ -64,12 +68,13 @@
   color: @red;
 }
 
-#idle_inhibitor,
+#backlight,
 #network,
 #cpu {
   color: @yellow;
 }
 
+#battery,
 #language,
 #temperature {
   color: @purple;

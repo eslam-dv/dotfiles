@@ -1,58 +1,73 @@
 {
   "plugins": {
     "blink.cmp": {
+      "rev": "d7f1c64",
+      "src": "https://github.com/Saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
-    "codecompanion.nvim": {
-      "rev": "79c6908",
-      "src": "https://github.com/olimorris/codecompanion.nvim"
+    "bufferline.nvim": {
+      "rev": "655133c",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
+    "conform.nvim": {
+      "rev": "ffe26e8",
+      "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": [],
     "gitsigns.nvim": [],
-    "indentmini.nvim": {
-      "rev": "e0f1e38",
-      "src": "https://github.com/nvimdev/indentmini.nvim"
+    "kulala.nvim": {
+      "rev": "b36aff6",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
     },
-    "lualine.nvim": {
-      "rev": "3946f01",
-      "src": "https://github.com/nvim-lualine/lualine.nvim"
-    },
+    "lualine.nvim": [],
     "mason-lspconfig.nvim": [],
-    "mason-tool-installer.nvim": [],
     "mason.nvim": [],
     "mini.icons": {
       "version": "'stable'"
     },
-    "mini.pick": {
-      "version": "'stable'"
+    "mini.indentscope": {
+      "rev": "0308f94",
+      "src": "https://github.com/nvim-mini/mini.indentscope"
     },
-    "none-ls-extras.nvim": [],
-    "none-ls.nvim": [],
     "nvim-autopairs": [],
-    "nvim-colorizer.lua": [],
+    "nvim-lint": {
+      "rev": "897f777",
+      "src": "https://github.com/mfussenegger/nvim-lint"
+    },
     "nvim-lspconfig": [],
+    "nvim-tree.lua": {
+      "rev": "eb33612",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+    },
     "nvim-treesitter": {
       "version": "'master'"
     },
     "nvim-ts-autotag": [],
-    "nvim-ufo": {
-      "rev": "72d54c3",
-      "src": "https://github.com/kevinhwang91/nvim-ufo"
-    },
     "plenary.nvim": [],
-    "promise-async": {
-      "rev": "119e896",
-      "src": "https://github.com/kevinhwang91/promise-async"
-    },
     "render-markdown.nvim": {
-      "rev": "a1b2bf0",
+      "rev": "26097a4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
-    "toggleterm.nvim": [],
-    "tokyonight.nvim": [],
-    "windsurf.vim": {
-      "rev": "a8d47ec",
-      "src": "https://github.com/Exafunction/windsurf.vim"
+    "rest.nvim": {
+      "rev": "5466d1e",
+      "src": "https://github.com/rest-nvim/rest.nvim"
+    },
+    "roslyn.nvim": [],
+    "sonokai": {
+      "rev": "a796676",
+      "src": "https://github.com/sainnhe/sonokai"
+    },
+    "telescope-ui-select.nvim": {
+      "rev": "6e51d7d",
+      "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "e69b434",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "tokyonight.nvim": {
+      "rev": "5da1b76",
+      "src": "https://github.com/folke/tokyonight.nvim"
     }
   }
 }
